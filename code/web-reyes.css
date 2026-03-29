@@ -1,0 +1,99 @@
+:root {
+    --neon-blue: #00d4ff;
+    --neon-green: #39ff14;
+    --dark-bg: #0a0b10;
+    --glass: rgba(255, 255, 255, 0.07);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: url('../Images and Links/network.bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'JetBrains Mono', monospace;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: -1;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-header { text-align: center; padding: 40px 0 20px 0; }
+.main-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    color: var(--neon-blue);
+    margin: 0;
+}
+
+.degree-title {
+    font-size: 1.2rem;
+    color: var(--neon-green);
+    margin-top: 10px;
+    border-top: 1px solid rgba(57, 255, 20, 0.3);
+    padding-top: 10px;
+}
+
+.twin-cards { display: flex; gap: 30px; margin: 40px 0; justify-content: center; }
+.card { flex: 1; height: 350px; max-width: 450px; border-radius: 15px; overflow: hidden; }
+.glass-panel { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+
+.card-content h3 {
+    color: var(--neon-blue);
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.contact-list { list-style: none; padding: 0; line-height: 2; }
+
+/* FIXED: Links now match the Contact Dispatch header color */
+.contact-list a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-list a:hover { color: var(--neon-green); text-decoration: underline; }
+
+.image-panel { border: 2px solid var(--neon-blue); }
+.profile-img-fill {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center 15%; 
+}
+
+.button-row { display: flex; justify-content: center; margin-bottom: 60px; gap: 50px; }
+.custom-button-container { position: relative; width: 250px; cursor: pointer; transition: transform 0.2s; }
+.custom-button-container:hover { transform: translateY(-5px); }
+.custom-button-img { width: 100%; display: block; }
+
+.button-label {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-shadow: 0px 0px 5px black;
+    text-align: center;
+    width: 80%;
+}

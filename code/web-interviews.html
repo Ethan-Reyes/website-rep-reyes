@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interviews | Ethan Reyes</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="web-reyes.css">
+    <style>
+        .interview-hero {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin: 40px 0 30px 0;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+        }
+        .interview-photo-wrapper { flex-shrink: 0; width: 200px; }
+        .interview-photo {
+            width: 200px;
+            height: 240px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 10px;
+            border: 2px solid var(--neon-blue);
+            display: block;
+        }
+        .interview-photo-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.75rem;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .interview-bio h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--neon-blue);
+            font-size: 1.8rem;
+            margin: 0 0 4px 0;
+        }
+        .interview-bio .interview-title {
+            color: var(--neon-green);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(57, 255, 20, 0.3);
+            padding-bottom: 12px;
+        }
+        .interview-bio p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+        }
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon-green);
+            margin: 40px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(57, 255, 20, 0.3);
+        }
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .quote-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-left: 3px solid var(--neon-blue);
+            border-radius: 10px;
+            padding: 24px 24px 20px 24px;
+            position: relative;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+        .quote-card:hover {
+            border-left-color: var(--neon-green);
+            transform: translateY(-3px);
+        }
+        .quote-card::before {
+            content: '\201C';
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            color: var(--neon-blue);
+            opacity: 0.3;
+            position: absolute;
+            top: 8px;
+            left: 16px;
+            line-height: 1;
+        }
+        .quote-card blockquote {
+            margin: 20px 0 12px 0;
+            padding: 0;
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+        .quote-tag {
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--neon-green);
+            opacity: 0.8;
+        }
+        .insights-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .insight-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 10px;
+            padding: 20px 24px;
+            transition: border-color 0.3s;
+        }
+        .insight-item:hover { border-color: rgba(0, 212, 255, 0.3); }
+        .insight-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--neon-blue);
+            opacity: 0.4;
+            flex-shrink: 0;
+            min-width: 32px;
+        }
+        .insight-content h4 {
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            margin: 0 0 6px 0;
+            letter-spacing: 1px;
+        }
+        .insight-content p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.83rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .interview-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 16px 24px;
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .meta-item {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.5);
+        }
+        .meta-item span {
+            color: var(--neon-blue);
+            font-weight: 700;
+        }
+        .page-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--neon-green);
+            border: 1px solid rgba(57, 255, 20, 0.4);
+            border-radius: 3px;
+            padding: 4px 10px;
+            margin-bottom: 12px;
+        }
+        @media (max-width: 700px) {
+            .interview-hero { flex-direction: column; align-items: center; text-align: center; }
+            .quotes-grid { grid-template-columns: 1fr; }
+            .interview-photo-wrapper { width: 160px; }
+            .interview-photo { width: 160px; height: 190px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <header class="main-header">
+        <div class="title-wrapper">
+            <div class="page-badge">Exclusive Series</div>
+            <h1 class="glitch" data-text="INTERVIEW LOGS">INTERVIEW LOGS</h1>
+            <h2 class="degree-title">Industry Leaders &amp; Engineers</h2>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <div class="interview-meta">
+            <div class="meta-item">SUBJECT: <span>Bill Scott</span></div>
+            <div class="meta-item">COMPANY: <span>BrainPaint Inc.</span></div>
+            <div class="meta-item">FIELD: <span>Neurofeedback / EEG Biofeedback</span></div>
+            <div class="meta-item">FOUNDED: <span>2007 · Nevada</span></div>
+            <div class="meta-item">INTERVIEWED BY: <span>Ethan Reyes</span></div>
+        </div>
+
+        <section class="interview-hero">
+            <div class="interview-photo-wrapper">
+                <img src="../Images and Links/Bill_Scott_Pic.jpeg" alt="Bill Scott, CEO of BrainPaint" class="interview-photo">
+                <p class="interview-photo-caption">Bill Scott · CEO</p>
+            </div>
+            <div class="interview-bio">
+                <h2>Bill Scott</h2>
+                <p class="interview-title">Founder &amp; CEO — BrainPaint Incorporated</p>
+                <p>
+                    Bill Scott is a pioneer at the intersection of neuroscience and software engineering.
+                    Fascinated by both computers and the human mind since the age of five, he built his first
+                    four-bit computer at eleven alongside mentor Alan Johnson. After working with Native American
+                    communities in Minnesota in the early 1990s, Bill witnessed neurofeedback produce results that
+                    conventional treatment couldn't match. That discovery led to founding BrainPaint in 2007 —
+                    a lease-based neurofeedback platform now used by mental health institutions worldwide.
+                    BrainPaint has assisted five Olympic athletes earning one gold, two silver, and two bronze medals,
+                    and serves over 10,000 clients per month. Long before the AI boom, Bill was using IBM Watson
+                    Analytics and automated macros to run his entire operation — a 20-year head start on the industry.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-label">Key Quotes</div>
+        <div class="quotes-grid">
+
+            <div class="quote-card">
+                <blockquote>
+                    "The most valuable skill I have — even now with all the advances in AI — is knowing clearly
+                    what computers are currently really good at, and what they're terrible at, as it relates to
+                    the human experience."
+                </blockquote>
+                <div class="quote-tag">On Technical Wisdom</div>
+            </div>
+
+            <div class="quote-card">
+                <blockquote>
+                    "The more I automate things, the higher the threshold is that everything works perfectly.
+                    The dark underbelly of AI is a constant feedback loop — and everything is my fault.
+                    That's the position UI developers have to own."
+                </blockquote>
+                <div class="quote-tag">On Automation &amp; Accountability</div>
+            </div>
+
+            <div class="quote-card">
+                <blockquote>
+                    "If you can't engineer prompts really well, you won't have any place as a junior programmer.
+                    Interviews are increasingly going to be: here's a project, solve this, text me when you're done.
+                    Good prompt engineers will text back fast."
+                </blockquote>
+                <div class="quote-tag">On the Future of Hiring</div>
+            </div>
+
+            <div class="quote-card">
+                <blockquote>
+                    "Find the thing you would do for free and hone that craft. Life will always give you
+                    all the space and resources you need. You don't have to choose between passion and income —
+                    those are narratives. You can do both."
+                </blockquote>
+                <div class="quote-tag">On Career Advice</div>
+            </div>
+
+            <div class="quote-card">
+                <blockquote>
+                    "Everything, everything, everything is trust. You can't manufacture trust.
+                    You build it with people — painstakingly, over years — and the machine
+                    has to earn it the same way."
+                </blockquote>
+                <div class="quote-tag">On Building Products</div>
+            </div>
+
+            <div class="quote-card">
+                <blockquote>
+                    "When your purpose is larger than you, what you say means nothing — what matters
+                    is the spirit you're possessed with. CPR: Context, Purpose, Results.
+                    Lead from the bigger picture and you can actually pick your results."
+                </blockquote>
+                <div class="quote-tag">On Leadership · CPR Framework</div>
+            </div>
+
+        </div>
+
+        <div class="section-label">Key Insights</div>
+        <div class="insights-list">
+
+            <div class="insight-item">
+                <div class="insight-number">01</div>
+                <div class="insight-content">
+                    <h4>AI Before It Was Cool</h4>
+                    <p>BrainPaint has leveraged AI since 2005 — starting with IBM Watson Analytics and automated
+                    macros that gave the software literal control of the mouse. While most companies only began
+                    exploring AI in the last decade, Bill was already running a 300-step clinical procedure fully
+                    automated, reducing clinician training from seven eight-hour days to near-zero human intervention.</p>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-number">02</div>
+                <div class="insight-content">
+                    <h4>Metadata-Driven Quality Assurance</h4>
+                    <p>BrainPaint collects de-identified metadata from every session run on the planet. This allows
+                    Bill to detect when clinicians miss critical steps — not through surveillance, but through
+                    statistical patterns — and automatically trigger retraining, QR-code guides, or equipment
+                    lockouts to protect result integrity across all providers.</p>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-number">03</div>
+                <div class="insight-content">
+                    <h4>The "Garbage In, Garbage Out" Problem in Healthcare Tech</h4>
+                    <p>Bill described the challenge of building software that understands human context — like an
+                    anxious teenager whose session data is unreliable. His solution: statistical inference models
+                    that flag over-reporters and under-reporters with high accuracy, protecting clinical outcome
+                    integrity without burdening the clinician.</p>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-number">04</div>
+                <div class="insight-content">
+                    <h4>10 People Doing the Work of 200</h4>
+                    <p>Through end-to-end automation — from contract signing and CRM population to equipment
+                    shipping and tech support — BrainPaint operates with roughly 10 people handling what would
+                    otherwise require hundreds. Every workflow that could be automated was automated from day one,
+                    and the AI even self-heals software errors before users notice them.</p>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-number">05</div>
+                <div class="insight-content">
+                    <h4>Prompt Engineering Is the New Literacy</h4>
+                    <p>Bill's advice for junior developers: master prompt engineering above all else. He personally
+                    maintains reusable core prompts that keep variables consistent, prevent AI from silently
+                    rewriting libraries, and return complete codebases ready to paste back — a disciplined system
+                    built through years of real-world iteration.</p>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-number">06</div>
+                <div class="insight-content">
+                    <h4>Always Say Yes</h4>
+                    <p>Bill's philosophy for engineers: in the digital world, everything is possible. The engineers
+                    who say "that's hard, not my problem" become anchors on their teams. The ones who say
+                    "yes — how do we solve this?" become irreplaceable. Even when a solution fails, you built
+                    a skill set. In the digital world, there is no losing.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <section class="button-row">
+            <div class="custom-button-container" id="btn-back">
+                <img src="../Images and Links/button.png" alt="Back" class="custom-button-img">
+                <span class="button-label">RETURN TO HOME</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.getElementById('btn-back').addEventListener('click', () => {
+            window.location.href = 'web-reyes.html';
+        });
+    </script>
+</body>
+</html>

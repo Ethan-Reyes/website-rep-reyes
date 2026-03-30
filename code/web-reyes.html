@@ -3,50 +3,325 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethan Reyes | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <title>Ethan Reyes | Data & Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="web-reyes.css">
 </head>
 <body>
-    <div class="overlay"></div>
-    <header class="main-header">
-        <div class="title-wrapper">
-            <h1 class="glitch" data-text="ETHAN REYES">ETHAN REYES</h1>
-            <h2 class="degree-title">Cloud Computing & Application Development</h2>
-        </div>
-    </header>
 
-    <main class="container">
-        <section class="twin-cards">
-            <div class="card glass-panel flex-center">
-                <div class="card-content">
-                    <h3>Contact Dispatch</h3>
-                    <ul class="contact-list">
-                        <li><strong>Location:</strong> Wichita, KS 67205</li>
-                        <li><strong>Email:</strong> <a href="mailto:Ethan.Paragon@gmail.com">Ethan.Paragon@gmail.com</a></li>
-                        <li><strong>Phone:</strong> <a href="tel:3168479296">(316) 847-9296</a></li>
-                        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ethan-reyes-88134a388" target="_blank">Connect</a></li>
-                        <li><strong>GitHub:</strong> <a href="https://github.com/Ethan-Reyes" target="_blank">View Repos</a></li>
-                        <li><strong>Resume:</strong> <a href="../Images and Links/Resume.PDF" target="_blank">Download PDF</a></li>
-                    </ul>
+    <!-- ── BOOT SCREEN ── -->
+    <div id="boot-screen">
+        <div id="boot-terminal">
+            <div id="boot-lines"></div>
+            <div id="boot-cursor"></div>
+        </div>
+        <button id="skip-boot">skip →</button>
+    </div>
+
+    <!-- ── MAIN SITE ── -->
+    <div id="main-site" class="hidden">
+
+        <!-- ── NAV ── -->
+        <nav id="main-nav">
+            <a href="#hero" class="nav-logo">ER</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#interviews">Interviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <!-- ── HERO ── -->
+        <section id="hero">
+            <div class="hero-inner">
+                <p class="hero-eyebrow">Based in Wichita, KS</p>
+                <h1 class="hero-name">Ethan<br><em>Reyes</em></h1>
+                <p class="hero-tagline">Data Engineer & Software Developer bridging heavy-industry data with modern cloud-native applications.</p>
+                <div class="hero-certs">
+                    <span class="cert-tag">AWS Cloud Practitioner</span>
+                    <span class="cert-tag">PCEP Python Certified</span>
+                    <span class="cert-tag">4.0 GPA · Summa Cum Laude</span>
+                    <span class="cert-tag">Power BI</span>
+                    <span class="cert-tag">Windows PowerShell</span>
+                </div>
+                <a href="#about" class="hero-scroll-hint">scroll down ↓</a>
+            </div>
+        </section>
+
+        <!-- ── ABOUT ── -->
+        <section id="about">
+            <div class="section-inner about-grid">
+                <div class="about-photo-col">
+                    <div class="about-photo-frame">
+                        <img src="../Images and Links/ethan_reyes_profile.JPG" alt="Ethan Reyes" class="about-photo">
+                    </div>
+                </div>
+                <div class="about-text-col">
+                    <p class="section-eyebrow">About</p>
+                    <h2 class="section-heading">Engineer. Interviewer.<br>Constant learner.</h2>
+                    <p class="about-body">
+                        I'm pursuing an AAS in Cloud Computing at WSU Tech (2027) with plans for a BS/Masters in Engineering Management at Wichita State (2029). My background spans data entry and compliance work at Textron Aviation through Ennovar, and a growing portfolio of cloud and software projects.
+                    </p>
+                    <p class="about-body">
+                        Outside of building things, I run an interview series with industry leaders and engineers — capturing insights that don't show up in textbooks.
+                    </p>
+                    <div class="about-stack">
+                        <span class="stack-tag">Java</span>
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">C#</span>
+                        <span class="stack-tag">AWS</span>
+                        <span class="stack-tag">JavaScript</span>
+                        <span class="stack-tag">HTML/CSS</span>
+                        <span class="stack-tag">Power BI</span>
+                        <span class="stack-tag">PowerShell</span>
+                        <span class="stack-tag">TDD</span>
+                    </div>
                 </div>
             </div>
-            <div class="card image-panel">
-                <img src="../Images and Links/ethan_reyes_profile.JPG" alt="Ethan Reyes" class="profile-img-fill">
+        </section>
+
+        <!-- ── EXPERIENCE ── -->
+        <section id="experience">
+            <div class="section-inner">
+                <p class="section-eyebrow">Experience & Projects</p>
+                <h2 class="section-heading">Where I've worked<br>& what I've built.</h2>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">2024 — Present</span>
+                            <span class="timeline-company">Textron Aviation · Ennovar</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Data & Compliance Contractor</h3>
+                            <p>Focused on data entry, compliance documentation, and warehouse problem-solving at one of the world's leading aircraft manufacturers. Currently transitioning these workflows into automated data engineering pipelines.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">2024 — 2027</span>
+                            <span class="timeline-company">WSU Tech</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>AAS · Cloud Computing & Application Development</h3>
+                            <p>Coursework spanning Java, Python, C#, JavaScript, HTML/CSS, AWS, and Test-Driven Development. Hands-on experience with Power BI for data visualization, Windows PowerShell for automation, and cloud infrastructure on AWS.</p>
+                            <a href="https://github.com/Ethan-Reyes" target="_blank" class="timeline-link">View Projects on GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">2024</span>
+                            <span class="timeline-company">Personal Project</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Web-Reyes Portfolio</h3>
+                            <p>This site — built from scratch in HTML, CSS, and JavaScript with a full Jest + JSDOM TDD test suite covering navigation, DOM structure, and XSS security.</p>
+                            <a href="https://github.com/Ethan-Reyes" target="_blank" class="timeline-link">View on GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">2024</span>
+                            <span class="timeline-company">Personal Project</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Whisper Transcription Pipeline</h3>
+                            <p>Built a local Python transcription pipeline using OpenAI Whisper and ffmpeg to process multi-file M4A interview recordings into structured text transcripts.</p>
+                            <a href="https://github.com/Ethan-Reyes" target="_blank" class="timeline-link">View on GitHub →</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
-        <section class="button-row">
-            <div class="custom-button-container" id="btn-experience">
-                <img src="../Images and Links/button.png" alt="Experience" class="custom-button-img">
-                <span class="button-label">EXPERIENCE & PROJECTS</span>
-            </div>
-            <div class="custom-button-container" id="btn-interviews">
-                <img src="../Images and Links/button.png" alt="Interviews" class="custom-button-img">
-                <span class="button-label">INTERVIEWS</span>
+        <!-- ── INTERVIEWS ── -->
+        <section id="interviews">
+            <div class="section-inner">
+                <p class="section-eyebrow">Interview Series</p>
+                <h2 class="section-heading">Conversations with<br>industry leaders.</h2>
+                <p class="interviews-intro">An ongoing series of in-depth interviews with engineers, founders, and builders. Click any card to read the full conversation.</p>
+
+                <div class="interview-cards">
+
+                    <!-- Bill Scott Card -->
+                    <div class="interview-card" id="card-billscott">
+                        <div class="interview-card-header" onclick="toggleInterview('billscott')">
+                            <div class="interview-card-photo-wrap">
+                                <img src="../Images and Links/Bill_Scott_Pic.jpeg" alt="Bill Scott" class="interview-card-photo">
+                            </div>
+                            <div class="interview-card-intro">
+                                <p class="interview-card-eyebrow">Episode 01</p>
+                                <h3 class="interview-card-name">Bill Scott</h3>
+                                <p class="interview-card-title">Founder & CEO — BrainPaint Inc.</p>
+                                <p class="interview-card-teaser">On using AI 20 years before it was fashionable, the dark underbelly of automation, and why prompt engineering is the new literacy.</p>
+                                <div class="interview-card-meta">
+                                    <span>Neurofeedback · EEG Biofeedback</span>
+                                    <span>Founded 2007 · Nevada</span>
+                                </div>
+                            </div>
+                            <div class="interview-card-toggle" id="toggle-billscott">
+                                <span>Read more</span>
+                                <span class="toggle-arrow">↓</span>
+                            </div>
+                        </div>
+
+                        <!-- Expanded Content -->
+                        <div class="interview-card-body" id="body-billscott">
+
+                            <div class="interview-bio-full">
+                                <p>Bill Scott is a pioneer at the intersection of neuroscience and software engineering. Fascinated by both computers and the human mind since age five, he built his first four-bit computer at eleven alongside mentor Alan Johnson. After working with Native American communities in Minnesota in the early 1990s, Bill witnessed neurofeedback produce results that conventional treatment couldn't match. That discovery led to founding BrainPaint in 2007 — a lease-based neurofeedback platform now used by mental health institutions worldwide. BrainPaint has assisted five Olympic athletes earning one gold, two silver, and two bronze medals, and serves over 10,000 clients per month.</p>
+                            </div>
+
+                            <div class="interview-meta-bar">
+                                <span>SUBJECT: <strong>Bill Scott</strong></span>
+                                <span>COMPANY: <strong>BrainPaint Inc.</strong></span>
+                                <span>INTERVIEWED BY: <strong>Ethan Reyes</strong></span>
+                            </div>
+
+                            <p class="content-label">Key Quotes</p>
+                            <div class="quotes-grid">
+                                <div class="quote-card">
+                                    <blockquote>"The most valuable skill I have — even now with all the advances in AI — is knowing clearly what computers are currently really good at, and what they're terrible at, as it relates to the human experience."</blockquote>
+                                    <span class="quote-tag">On Technical Wisdom</span>
+                                </div>
+                                <div class="quote-card">
+                                    <blockquote>"The more I automate things, the higher the threshold is that everything works perfectly. The dark underbelly of AI is a constant feedback loop — and everything is my fault. That's the position UI developers have to own."</blockquote>
+                                    <span class="quote-tag">On Automation & Accountability</span>
+                                </div>
+                                <div class="quote-card">
+                                    <blockquote>"If you can't engineer prompts really well, you won't have any place as a junior programmer. Interviews are increasingly going to be: here's a project, solve this, text me when you're done. Good prompt engineers will text back fast."</blockquote>
+                                    <span class="quote-tag">On the Future of Hiring</span>
+                                </div>
+                                <div class="quote-card">
+                                    <blockquote>"Find the thing you would do for free and hone that craft. You don't have to choose between passion and income — those are narratives. You can do both."</blockquote>
+                                    <span class="quote-tag">On Career Advice</span>
+                                </div>
+                                <div class="quote-card">
+                                    <blockquote>"Everything, everything, everything is trust. You can't manufacture trust. You build it with people — painstakingly, over years — and the machine has to earn it the same way."</blockquote>
+                                    <span class="quote-tag">On Building Products</span>
+                                </div>
+                                <div class="quote-card">
+                                    <blockquote>"When your purpose is larger than you, what you say means nothing — what matters is the spirit you're possessed with. CPR: Context, Purpose, Results. Lead from the bigger picture and you can actually pick your results."</blockquote>
+                                    <span class="quote-tag">On Leadership · CPR Framework</span>
+                                </div>
+                            </div>
+
+                            <p class="content-label">Key Insights</p>
+                            <div class="insights-list">
+                                <div class="insight-item">
+                                    <span class="insight-num">01</span>
+                                    <div>
+                                        <h4>AI Before It Was Cool</h4>
+                                        <p>BrainPaint has leveraged AI since 2005 — starting with IBM Watson Analytics and automated macros that gave the software literal control of the mouse. While most companies only began exploring AI in the last decade, Bill was already running a 300-step clinical procedure fully automated, reducing clinician training from seven eight-hour days to near-zero human intervention.</p>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-num">02</span>
+                                    <div>
+                                        <h4>Metadata-Driven Quality Assurance</h4>
+                                        <p>BrainPaint collects de-identified metadata from every session run on the planet. This allows Bill to detect when clinicians miss critical steps — not through surveillance, but through statistical patterns — and automatically trigger retraining, QR-code guides, or equipment lockouts to protect result integrity across all providers.</p>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-num">03</span>
+                                    <div>
+                                        <h4>The "Garbage In, Garbage Out" Problem in Healthcare Tech</h4>
+                                        <p>Bill described the challenge of building software that understands human context — like an anxious teenager whose session data is unreliable. His solution: statistical inference models that flag over-reporters and under-reporters with high accuracy, protecting clinical outcome integrity without burdening the clinician.</p>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-num">04</span>
+                                    <div>
+                                        <h4>10 People Doing the Work of 200</h4>
+                                        <p>Through end-to-end automation — from contract signing and CRM population to equipment shipping and tech support — BrainPaint operates with roughly 10 people handling what would otherwise require hundreds. Every workflow that could be automated was automated from day one, and the AI even self-heals software errors before users notice them.</p>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-num">05</span>
+                                    <div>
+                                        <h4>Prompt Engineering Is the New Literacy</h4>
+                                        <p>Bill's advice for junior developers: master prompt engineering above all else. He personally maintains reusable core prompts that keep variables consistent, prevent AI from silently rewriting libraries, and return complete codebases ready to paste back — a disciplined system built through years of real-world iteration.</p>
+                                    </div>
+                                </div>
+                                <div class="insight-item">
+                                    <span class="insight-num">06</span>
+                                    <div>
+                                        <h4>Always Say Yes</h4>
+                                        <p>Bill's philosophy for engineers: in the digital world, everything is possible. The engineers who say "that's hard, not my problem" become anchors on their teams. The ones who say "yes — how do we solve this?" become irreplaceable. Even when a solution fails, you built a skill set. In the digital world, there is no losing.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Haines Todd — Coming Soon -->
+                    <div class="interview-card interview-card--soon">
+                        <div class="interview-card-header">
+                            <div class="interview-card-photo-wrap interview-card-photo-wrap--soon">
+                                <span class="soon-icon">?</span>
+                            </div>
+                            <div class="interview-card-intro">
+                                <p class="interview-card-eyebrow">Episode 02</p>
+                                <h3 class="interview-card-name">Haines Todd</h3>
+                                <p class="interview-card-title">Software Engineer — Textron Aviation</p>
+                                <p class="interview-card-teaser">Creator of the AReS 3 diagnostic airplane system. Interview coming soon.</p>
+                            </div>
+                            <div class="interview-card-toggle interview-card-toggle--soon">
+                                <span>Coming soon</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
-    </main>
+
+        <!-- ── CONTACT ── -->
+        <section id="contact">
+            <div class="section-inner contact-grid">
+                <div>
+                    <p class="section-eyebrow">Contact</p>
+                    <h2 class="section-heading">Let's connect.</h2>
+                    <p class="about-body">I'm always open to conversations about engineering, cloud infrastructure, data pipelines, or opportunities to collaborate.</p>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:Ethan.Paragon@gmail.com" class="contact-link">
+                        <span class="contact-link-label">Email</span>
+                        <span class="contact-link-value">Ethan.Paragon@gmail.com →</span>
+                    </a>
+                    <a href="tel:3168479296" class="contact-link">
+                        <span class="contact-link-label">Phone</span>
+                        <span class="contact-link-value">(316) 847-9296 →</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ethan-reyes-88134a388" target="_blank" class="contact-link">
+                        <span class="contact-link-label">LinkedIn</span>
+                        <span class="contact-link-value">Connect →</span>
+                    </a>
+                    <a href="https://github.com/Ethan-Reyes" target="_blank" class="contact-link">
+                        <span class="contact-link-label">GitHub</span>
+                        <span class="contact-link-value">View Repos →</span>
+                    </a>
+                    <a href="../Images and Links/Resume.PDF" target="_blank" class="contact-link">
+                        <span class="contact-link-label">Resume</span>
+                        <span class="contact-link-value">Download PDF →</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bar">
+                <span>© 2026 Ethan Reyes · Wichita, KS</span>
+                <span>Built with HTML, CSS & JavaScript</span>
+            </div>
+        </section>
+
+    </div><!-- /#main-site -->
+
     <script src="web-reyes.js"></script>
 </body>
 </html>

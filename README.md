@@ -14,7 +14,7 @@ Bridging heavy-industry data with modern cloud-native applications. This project
 * **Cloud & DevOps:** AWS, Git/GitHub, PowerShell Automation
 * **Languages:** Python (Whisper AI, Data Processing), JavaScript, C#, Java, .NET
 * **Systems:** Hardware Diagnostics, Data Entry Compliance, Warehouse Logistics
-* **Web Design:** HTML5, CSS3 (Cyberpunk-Aviation Aesthetic)
+* **Web Design:** HTML5, CSS3 
 
 ## 📂 Repository Structure
 * **`/code`**: Core website files and Python automation scripts for data transcription.

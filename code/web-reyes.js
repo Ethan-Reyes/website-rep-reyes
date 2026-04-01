@@ -3,13 +3,13 @@
 /* ============================================================
    web-reyes.js — Ethan Reyes Portfolio
    Features: Terminal boot animation, interview expand/collapse,
-             smooth nav highlight on scroll
+             smooth nav highlight on scroll, serverless functions
    ============================================================ */
 
 // ── Boot Sequence ─────────────────────────────────────────────
 
 const BOOT_LINES = [
-    { text: "BIOS v2.26.0 · T.A.L.I.O.N Tech Systems", type: "output", delay: 0 },
+    { text: "BIOS v2.26.0 · T.A.L.I.O.N.I.S Tech Systems", type: "output", delay: 0 },
     { text: "Initializing hardware...", type: "output", delay: 300 },
     { text: "CPU: Cloud Computing Core · 4.0GHz", type: "output", delay: 600 },
     { text: "RAM: 16GB · AWS Certified", type: "output", delay: 850 },
@@ -33,10 +33,10 @@ const BOOT_DURATION = 5600;
  * then fades out and reveals the main site.
  */
 function runBootSequence() {
-    const bootScreen  = document.getElementById('boot-screen');
-    const bootLines   = document.getElementById('boot-lines');
-    const skipBtn     = document.getElementById('skip-boot');
-    const mainSite    = document.getElementById('main-site');
+    const bootScreen = document.getElementById('boot-screen');
+    const bootLines  = document.getElementById('boot-lines');
+    const skipBtn    = document.getElementById('skip-boot');
+    const mainSite   = document.getElementById('main-site');
 
     if (!bootScreen || !mainSite) return;
 
@@ -68,6 +68,56 @@ function launchSite(bootScreen, mainSite) {
     setTimeout(() => {
         bootScreen.style.display = 'none';
     }, 650);
+}
+
+// ── Serverless Functions ──────────────────────────────────────
+
+/**
+ * Calls the visitor-counter Netlify Function to log this visit
+ * and display the running total in the Cloud section.
+ */
+async function trackVisitor() {
+    try {
+        const response = await fetch('/.netlify/functions/visitor-counter', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await response.json();
+
+        if (data.success) {
+            const el = document.getElementById('visitor-count');
+            if (el) el.textContent = data.count.toLocaleString();
+        }
+    } catch (error) {
+        // Silently fail — stats are a nice-to-have, not critical
+        console.warn('Visitor counter unavailable:', error.message);
+    }
+}
+
+/**
+ * Calls the resume-tracker Netlify Function when the resume
+ * download link is clicked, logging the event server-side.
+ */
+function initResumeTracker() {
+    const resumeLink = document.getElementById('resume-download-link');
+    if (!resumeLink) return;
+
+    resumeLink.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/.netlify/functions/resume-tracker', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                const el = document.getElementById('resume-count');
+                if (el) el.textContent = data.count.toLocaleString();
+            }
+        } catch (error) {
+            console.warn('Resume tracker unavailable:', error.message);
+        }
+    });
 }
 
 // ── Interview Card Toggle ─────────────────────────────────────
@@ -139,11 +189,7 @@ function initNavCompact() {
     if (!nav) return;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 60) {
-            nav.style.padding = '12px 40px';
-        } else {
-            nav.style.padding = '20px 40px';
-        }
+        nav.style.padding = window.scrollY > 60 ? '12px 40px' : '20px 40px';
     }, { passive: true });
 }
 
@@ -153,4 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     runBootSequence();
     initNavHighlight();
     initNavCompact();
+    initResumeTracker();
+    trackVisitor();
 });

@@ -1,0 +1,14 @@
+[build]
+  # Directs Netlify to the 'code' folder to find index.html
+  publish = "code"
+
+[functions]
+  # Directs Netlify to Visitor Counter and Resume Tracker
+  directory = "netlify/functions"
+
+[[redirects]]
+  # Clean URL routing: ensures the browser always finds index.html
+  from = "/*"
+  to = "/index.html"
+  status = 200
+

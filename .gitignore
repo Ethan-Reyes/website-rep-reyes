@@ -1,0 +1,11 @@
+# Local Secrets
+.env
+tools/.env
+
+# Data Files
+*.csv
+portfolio_metrics.csv
+
+# Python environment
+__pycache__/
+.venv/

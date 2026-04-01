@@ -18,6 +18,7 @@
     "jest-environment-jsdom": "^30.2.0"
   },
   "dependencies": {
+    "@netlify/blobs": "^10.7.4",
     "jsdom": "^28.1.0"
   }
 }

@@ -9,3 +9,5 @@ portfolio_metrics.csv
 # Python environment
 __pycache__/
 .venv/
+
+node_modules/

@@ -1,41 +1,93 @@
-# Web-Reyes: Engineering & Cloud Development Portfolio
+This merged version combines your high-level "Mission Statement" with the granular project details and your newly defined **Cloud Architecture** philosophy. It’s designed to be a high-impact document that works for both technical peers and engineering managers.
+
+-----
+
+# Ethan Reyes — Engineering & Cloud Development Portfolio
+
+**Data Engineer & Software Developer | Wichita, KS**
+[ethanreyes.netlify.app](https://www.google.com/search?q=https://ethanreyes.netlify.app) • [GitHub](https://www.google.com/search?q=https://github.com/Ethan-Reyes) • [LinkedIn](https://linkedin.com)
 
 ## 🚀 Project Mission
-A technical showcase bridging heavy-industry data with modern cloud-native applications. This project serves as a professional portfolio and a technical sandbox for exploring Data Engineering, Systems Automation, and Software Management.
 
-## 🎓 About the Author: Ethan Reyes
-* **Current Education:** Associate of Applied Science in Cloud Computing & App Development (WSU Tech) | Expected Graduation: Spring 2027.
-* **Academic Standing:** 4.0 GPA, Summa Cum Laude, Salutatorian.
-* **Current Role:** Engineering Assistant at Textron Aviation (Ennovar Contractor).
-* **Certifications:** AWS Certified Cloud Practitioner.
-* **Future Roadmap:** B.S. in Applied Engineering (WSU) ➡️ Master’s in Engineering Management (Expected 2029).
+A technical showcase bridging heavy-industry data with modern cloud-native applications. This project serves as a professional portfolio and an engineering sandbox for exploring **Data Engineering**, **Systems Automation**, and **Software Management**.
+
+## 🎓 About the Author
+
+  * **Education:** AAS in Cloud Computing & App Development (WSU Tech) | Expected 2027
+  * **Standing:** 4.0 GPA, Summa Cum Laude, Salutatorian
+  * **Current Role:** Engineering Assistant at **Textron Aviation** (Ennovar Contractor)
+  * **Roadmap:** B.S. in Applied Engineering ➡️ Master’s in Engineering Management (WSU, 2029)
+
+-----
+
+## 🌐 Cloud Architecture & Deployment Philosophy
+
+> *"Efficiency in infrastructure allows for excellence in engineering."*
+
+To maximize focus on **Applied Engineering** and **Aviation Diagnostics**, this portfolio utilizes a modern **Serverless Cloud Architecture**:
+
+  * **Continuous Integration/Deployment (CI/CD):** Integrated with GitHub to automate the build pipeline. Every structural update is verified and deployed instantly upon `git push`.
+  * **Serverless Edge Distribution:** Leverages **Netlify** to ensure 99.9% availability and global performance with **Zero Infrastructure Overhead**.
+  * **Operational Excellence:** By abstracting server management, 100% of development bandwidth is shifted toward high-value engineering output (AReS 3 diagnostics) rather than environment maintenance.
+  * **Serverless Functions:** Custom backend logic handles visitor tracking and resume download logging without a traditional server.
+
+-----
 
 ## 🛠 Featured Engineering Projects
 
-### 1. AI-Powered Transcription Pipeline (Python & OpenAI Whisper)
-* **The Challenge:** Automating the transcription of 8+ hours of raw technical interview audio (M4A format).
-* **The Solution:** Developed a custom Python pipeline utilizing **OpenAI Whisper** and **FFmpeg**. 
-* **Key Achievement:** Successfully troubleshot complex Windows PATH environment variables and built a secondary script to programmatically merge and format individual transcripts into a master technical document.
+### 1\. AI-Powered Transcription Pipeline (Python & Whisper)
 
-### 2. Full-Stack Editorial Redesign (UI/UX)
-* **Architecture:** Engineered a high-performance, single-scrolling SPA (Single Page Application) with a custom **Terminal-style boot animation**.
-* **Tech Stack:** Vanilla JavaScript, HTML5, and CSS3. 
-* **Design Philosophy:** A sophisticated "Warm Editorial" palette (Cream/Charcoal/Amber) using **Playfair Display** typography, optimized for professional readability and technical storytelling.
+  * **The Challenge:** Automating the transcription of 8+ hours of raw technical interview audio.
+  * **The Solution:** Developed a custom Python pipeline utilizing **OpenAI Whisper** and **FFmpeg**.
+  * **Achievement:** Engineered a secondary script to programmatically merge and format individual transcripts into a structured technical master document.
 
-### 3. Automated Test Suite (TDD with Jest & JSDOM)
-* **Integrity:** Implemented a full Test-Driven Development workflow with **20+ passing tests** across 5 specialized suites.
-* **Security:** Developed and validated **XSS (Cross-Site Scripting) sanitization** logic to ensure secure handling of interview and user-submitted data.
-* **Functionality:** Tested section visibility toggling, navigation logic, and DOM integrity.
+### 2\. Automated Test Suite (TDD with Jest & JSDOM)
 
-### 4. Engineering Interview Series
+  * **Integrity:** 32 tests across 6 specialized suites covering UI logic, navigation, and DOM integrity.
+  * **Security:** Developed and validated **XSS (Cross-Site Scripting) sanitization** logic to ensure secure handling of interview data.
+
+### 3\. Engineering Interview Series
+
 A leadership-focused project documenting the intersection of industry innovation and software architecture.
-* **Bill Scott (CEO, BrainPaint):** Insights on neurofeedback AI systems serving 10,000+ monthly clients.
-* **Haines Todd (Main Software Engineer, Textron Aviation):** Technical deep dive into the **AReS 3 Software Diagnostic Box** and aviation-grade software reliability.
 
-## 💻 Technical Skills
-* **Languages:** Python, C#, PowerShell, JavaScript, Java, .NET
-* **Cloud & DevOps:** AWS (Cloud Practitioner), Git/GitHub, Systems Automation
-* **Data & Engineering:** Power BI, Hardware Diagnostics (AReS 3), Data Entry Compliance
+  * **Bill Scott (CEO, BrainPaint):** Insights on neurofeedback AI systems serving 10,000+ monthly clients.
+  * **Haines Todd (Software Engineer, Textron Aviation):** Technical deep-dive into **AReS 3 Diagnostic Systems**.
 
----
-*Generated by Ethan Reyes - 2026*
+### 4\. Full-Stack Editorial Redesign (UI/UX)
+
+  * **Architecture:** High-performance SPA with a custom Terminal-style boot animation.
+  * **Design:** A sophisticated "Warm Editorial" palette (Cream/Charcoal/Amber) using **Playfair Display** typography, optimized for professional storytelling.
+
+-----
+
+## 💻 Technical Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | HTML5, CSS3, JavaScript (ES6+) |
+| **Languages** | Python, C\#, PowerShell, Java, .NET |
+| **Cloud/DevOps** | AWS (Certified Cloud Practitioner), Netlify, Git/GitHub |
+| **Data/Testing** | Power BI, Jest, JSDOM, SQL |
+
+-----
+
+## 📂 Project Structure
+
+```text
+Website Project/
+├── code/                       # Main development directory
+│   ├── web-reyes.html          # SPA Portfolio
+│   ├── web-reyes.test.js       # TDD Test Suite (32 Tests)
+│   └── transcription_pipeline/ # Python & Whisper scripts
+├── netlify/
+│   └── functions/              # Serverless backend logic
+├── netlify.toml                # CI/CD configuration
+└── README.md
+```
+
+-----
+
+*Generated by Ethan Reyes — 2026*
+
+
+

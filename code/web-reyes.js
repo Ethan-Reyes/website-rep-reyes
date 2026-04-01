@@ -9,7 +9,7 @@
 // ── Boot Sequence ─────────────────────────────────────────────
 
 const BOOT_LINES = [
-    { text: "BIOS v2.26.0 · WSU Tech Systems", type: "output", delay: 0 },
+    { text: "BIOS v2.26.0 · T.A.L.I.O.N Tech Systems", type: "output", delay: 0 },
     { text: "Initializing hardware...", type: "output", delay: 300 },
     { text: "CPU: Cloud Computing Core · 4.0GHz", type: "output", delay: 600 },
     { text: "RAM: 16GB · AWS Certified", type: "output", delay: 850 },
@@ -26,7 +26,7 @@ const BOOT_LINES = [
     { text: "✓ Portfolio ready. Welcome.", type: "highlight", delay: 5000 },
 ];
 
-const BOOT_DURATION = 5600; // ms before auto-launch
+const BOOT_DURATION = 5600;
 
 /**
  * Renders the boot terminal animation line by line,
@@ -40,22 +40,18 @@ function runBootSequence() {
 
     if (!bootScreen || !mainSite) return;
 
-    // Schedule each line to appear
     BOOT_LINES.forEach(({ text, type, delay }) => {
         setTimeout(() => {
             const span = document.createElement('span');
             span.classList.add('line', type);
             span.textContent = text;
             bootLines.appendChild(span);
-            // Auto-scroll terminal
             bootLines.scrollTop = bootLines.scrollHeight;
         }, delay);
     });
 
-    // Auto-launch after full sequence
     const launchTimer = setTimeout(() => launchSite(bootScreen, mainSite), BOOT_DURATION);
 
-    // Skip button
     skipBtn.addEventListener('click', () => {
         clearTimeout(launchTimer);
         launchSite(bootScreen, mainSite);
@@ -89,27 +85,23 @@ function toggleInterview(id) {
 
     const isExpanded = card.classList.contains('expanded');
 
-    // Collapse all cards first
     document.querySelectorAll('.interview-card.expanded').forEach(c => {
         c.classList.remove('expanded');
         const t = c.querySelector('.interview-card-toggle span:first-child');
         if (t) t.textContent = 'Read more';
     });
 
-    // If it wasn't expanded, open it now
     if (!isExpanded) {
         card.classList.add('expanded');
         const label = toggle.querySelector('span:first-child');
         if (label) label.textContent = 'Close';
 
-        // Smooth scroll to card after a brief paint delay
         setTimeout(() => {
             card.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
     }
 }
 
-// Expose toggleInterview globally for onclick attributes
 window.toggleInterview = toggleInterview;
 
 // ── Active Nav Highlight on Scroll ───────────────────────────

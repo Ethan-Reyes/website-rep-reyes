@@ -24,28 +24,30 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // Updated to explicitly use credentials for the Cloud environment
+        // Explicitly use credentials for the Cloud environment
         const store = getStore({
             name: "portfolio-stats",
             siteID: process.env.NETLIFY_SITE_ID,
             token: process.env.NETLIFY_AUTH_TOKEN
         });
 
-        // Fetch all stored data in parallel
-        const [
-            visitorCount,
-            resumeDownloads,
-            visitorLog,
-            countrySummary
-        ] = await Promise.all([
-            store.get("visitor-count"),
-            store.get("resume-downloads"),
-            store.get("visitor-log"),
-            store.get("country-summary")
-        ]);
+        // Fetch values individually with fallbacks to avoid Promise.all crashes
+        // This ensures that if a key doesn't exist yet, the code doesn't break
+        const visitorCount    = await store.get("visitor-count")    || "0";
+        const resumeDownloads = await store.get("resume-downloads") || "0";
+        const visitorLog      = await store.get("visitor-log")      || "[]";
+        const countrySummary  = await store.get("country-summary")  || "{}";
 
-        const log     = visitorLog     ? JSON.parse(visitorLog)     : [];
-        const summary = countrySummary ? JSON.parse(countrySummary) : {};
+        let log, summary;
+        try {
+            // Safety check: parse only if data exists, otherwise use empty defaults
+            log = JSON.parse(visitorLog);
+            summary = JSON.parse(countrySummary);
+        } catch (e) {
+            console.error("Parsing error:", e);
+            log = [];
+            summary = {};
+        }
 
         // Build country list for Unity globe
         const countryList = Object.entries(summary)
@@ -68,14 +70,16 @@ exports.handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error("get-stats error:", error);
+        // This log will appear in your Netlify Functions dashboard
+        console.error("get-stats critical error:", error);
+        
         return {
             statusCode: 500,
             headers,
             body: JSON.stringify({
                 success: false,
                 message: "Could not retrieve stats.",
-                error: error.message // Added for easier debugging in the Python terminal
+                error: error.message 
             })
         };
     }

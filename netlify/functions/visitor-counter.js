@@ -23,7 +23,12 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        const store = getStore("portfolio-stats");
+        // Updated to use the credentials you saved in Netlify UI
+        const store = getStore({
+            name: "portfolio-stats",
+            siteID: process.env.NETLIFY_SITE_ID,
+            token: process.env.NETLIFY_AUTH_TOKEN
+        });
 
         // ── Increment visitor count ──────────────────────────
         const current = await store.get("visitor-count");
@@ -55,7 +60,13 @@ exports.handler = async (event, context) => {
 
         // ── Append to visit log ──────────────────────────────
         const logsRaw = await store.get("visitor-log");
-        const logs = logsRaw ? JSON.parse(logsRaw) : [];
+        let logs = [];
+        try {
+            logs = logsRaw ? JSON.parse(logsRaw) : [];
+        } catch (e) {
+            logs = [];
+        }
+        
         logs.push(visitEvent);
 
         // Keep last 500 visit events
@@ -64,7 +75,13 @@ exports.handler = async (event, context) => {
 
         // ── Update country summary for quick lookups ─────────
         const summaryRaw = await store.get("country-summary");
-        const summary = summaryRaw ? JSON.parse(summaryRaw) : {};
+        let summary = {};
+        try {
+            summary = summaryRaw ? JSON.parse(summaryRaw) : {};
+        } catch (e) {
+            summary = {};
+        }
+        
         summary[country] = (summary[country] || 0) + 1;
         await store.set("country-summary", JSON.stringify(summary));
 
@@ -86,7 +103,8 @@ exports.handler = async (event, context) => {
             headers,
             body: JSON.stringify({
                 success: false,
-                message: "Could not update visitor count."
+                message: "Could not update visitor count.",
+                error: error.message
             })
         };
     }

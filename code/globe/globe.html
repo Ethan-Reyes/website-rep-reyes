@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visitor Globe</title>
+    <link rel="stylesheet" href="globe.css" />
+  </head>
+  <body>
+    <div id="globe-container">
+      <div id="globe-stats">
+        <span class="globe-stat-label">Live Visitors</span>
+        <span class="globe-stat-value" id="globe-visitor-count">—</span>
+      </div>
+    </div>
+
+    <!-- Three.js core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Orbit Controls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Globe logic -->
+    <script src="globe.js"></script>
+  </body>
+</html>

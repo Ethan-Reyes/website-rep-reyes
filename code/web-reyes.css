@@ -52,10 +52,14 @@ img {
   display: block;
   max-width: 100%;
 }
+
 .hidden {
-  display: none !important;
+  display: none;
 }
 
+#main-site.hidden {
+  display: none;
+}
 /* ============================================================
    BOOT SCREEN
    ============================================================ */

@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ethan Reyes | Data & Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
       rel="stylesheet"
@@ -62,6 +64,9 @@
                 src="images/ethan_reyes_profile.JPG"
                 alt="Ethan Reyes"
                 class="about-photo"
+                width="300"
+                height="380"
+                loading="lazy"
               />
             </div>
           </div>
@@ -104,9 +109,7 @@
           <h2 class="section-heading">
             Where I've worked<br />& what I've built.
           </h2>
-
           <div class="timeline">
-            <!-- Textron -->
             <div class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">2025 — Present</span>
@@ -123,7 +126,6 @@
               </div>
             </div>
 
-            <!-- AReS 3 -->
             <div class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">2025 — Ongoing</span>
@@ -147,7 +149,6 @@
               </div>
             </div>
 
-            <!-- WSU -->
             <div class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">2025 — 2027</span>
@@ -170,7 +171,6 @@
               </div>
             </div>
 
-            <!-- Portfolio -->
             <div class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">2025</span>
@@ -194,7 +194,6 @@
               </div>
             </div>
 
-            <!-- Whisper Pipeline -->
             <div class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">2025</span>
@@ -217,7 +216,6 @@
               </div>
             </div>
 
-            <!-- 3D Globe -->
             <div class="timeline-item">
               <div class="timeline-meta">
                 <span class="timeline-date">2025 — Ongoing</span>
@@ -289,7 +287,6 @@
             </div>
           </div>
 
-          <!-- Live Stats Bar -->
           <div class="cloud-stats">
             <div class="cloud-stat">
               <span class="cloud-stat-value" id="visitor-count">—</span>
@@ -309,7 +306,7 @@
             </div>
           </div>
 
-          <!-- 3D Visitor Globe -->
+          <!-- 3D Visitor Globe — sandbox attribute added for security -->
           <div class="globe-section">
             <p class="content-label">Live Visitor Globe</p>
             <div class="globe-embed" id="globe-embed">
@@ -318,6 +315,7 @@
                 title="Live Visitor Globe"
                 scrolling="no"
                 allowtransparency="true"
+                sandbox="allow-scripts allow-same-origin"
               >
               </iframe>
             </div>
@@ -338,17 +336,23 @@
           </p>
 
           <div class="interview-cards">
-            <!-- Bill Scott Card -->
+            <!-- Bill Scott -->
             <div class="interview-card" id="card-billscott">
               <div
                 class="interview-card-header"
-                onclick="toggleInterview('billscott')"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+                aria-controls="body-billscott"
               >
                 <div class="interview-card-photo-wrap">
                   <img
                     src="images/Bill_Scott_Pic.jpeg"
                     alt="Bill Scott"
                     class="interview-card-photo"
+                    width="130"
+                    height="160"
+                    loading="lazy"
                   />
                 </div>
                 <div class="interview-card-intro">
@@ -551,7 +555,7 @@
 
             <!-- Haines Todd — Coming Soon -->
             <div class="interview-card interview-card--soon" id="card-haines">
-              <div class="interview-card-header">
+              <div class="interview-card-header" role="presentation">
                 <div
                   class="interview-card-photo-wrap interview-card-photo-wrap--soon"
                 >
@@ -579,7 +583,7 @@
               class="interview-card interview-card--soon"
               id="card-johndavis"
             >
-              <div class="interview-card-header">
+              <div class="interview-card-header" role="presentation">
                 <div
                   class="interview-card-photo-wrap interview-card-photo-wrap--soon"
                 >
@@ -618,11 +622,24 @@
             </p>
           </div>
           <div class="contact-links">
-            <a href="mailto:Ethan.Paragon@gmail.com" class="contact-link">
+            <!-- Contact info obfuscated with Base64 to prevent scraping -->
+            <!-- Ethan.Paragon@gmail.com = RXRoYW4uUGFyYWdvbkBnbWFpbC5jb20= -->
+            <a
+              href="#"
+              class="contact-link"
+              data-contact="RXRoYW4uUGFyYWdvbkBnbWFpbC5jb20="
+              data-type="email"
+            >
               <span class="contact-link-label">Email</span>
-              <span class="contact-link-value">Ethan.Paragon@gmail.com →</span>
+              <span class="contact-link-value">Loading... →</span>
             </a>
-            <a href="tel:3168479296" class="contact-link">
+            <!-- 3168479296 = MzE2ODQ3OTI5Ng== -->
+            <a
+              href="#"
+              class="contact-link"
+              data-contact="MzE2ODQ3OTI5Ng=="
+              data-type="tel"
+            >
               <span class="contact-link-label">Phone</span>
               <span class="contact-link-value">(316) 847-9296 →</span>
             </a>
@@ -659,7 +676,6 @@
         </div>
       </section>
     </div>
-    <!-- /#main-site -->
 
     <script src="web-reyes.js"></script>
   </body>

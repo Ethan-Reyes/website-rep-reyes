@@ -1162,3 +1162,23 @@ section {
   letter-spacing: 1px;
   color: rgba(245, 240, 232, 0.25);
 }
+
+/* ── Aviation Dashboard Embed ── */
+.aviation-section {
+  margin-top: 48px;
+}
+
+.aviation-embed {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  background: #1c1917;
+}
+
+.aviation-embed iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  display: block;
+}

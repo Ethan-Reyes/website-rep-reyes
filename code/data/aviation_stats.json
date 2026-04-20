@@ -1,0 +1,204 @@
+{
+  "generatedAt": "2026-04-20T00:47:01.6453389Z",
+  "totalAircraft": 50000,
+  "aircraftByState": [
+    {
+      "state": "TX",
+      "count": 4660
+    },
+    {
+      "state": "CA",
+      "count": 4092
+    },
+    {
+      "state": "FL",
+      "count": 3603
+    },
+    {
+      "state": "DE",
+      "count": 1866
+    },
+    {
+      "state": "WA",
+      "count": 1585
+    },
+    {
+      "state": "AK",
+      "count": 1411
+    },
+    {
+      "state": "IL",
+      "count": 1372
+    },
+    {
+      "state": "GA",
+      "count": 1358
+    },
+    {
+      "state": "UT",
+      "count": 1340
+    },
+    {
+      "state": "OH",
+      "count": 1282
+    },
+    {
+      "state": "AZ",
+      "count": 1268
+    },
+    {
+      "state": "CO",
+      "count": 1242
+    },
+    {
+      "state": "MI",
+      "count": 1175
+    },
+    {
+      "state": "OR",
+      "count": 1152
+    },
+    {
+      "state": "NC",
+      "count": 1145
+    }
+  ],
+  "aircraftByEngineType": [
+    {
+      "engineType": "Unknown",
+      "count": 50000
+    }
+  ],
+  "aircraftByType": [
+    {
+      "aircraftType": "Unknown",
+      "count": 50000
+    }
+  ],
+  "aircraftByYear": [
+    {
+      "year": "1996",
+      "count": 354
+    },
+    {
+      "year": "1997",
+      "count": 414
+    },
+    {
+      "year": "1998",
+      "count": 477
+    },
+    {
+      "year": "1999",
+      "count": 521
+    },
+    {
+      "year": "2000",
+      "count": 590
+    },
+    {
+      "year": "2001",
+      "count": 547
+    },
+    {
+      "year": "2002",
+      "count": 543
+    },
+    {
+      "year": "2003",
+      "count": 653
+    },
+    {
+      "year": "2004",
+      "count": 610
+    },
+    {
+      "year": "2005",
+      "count": 791
+    },
+    {
+      "year": "2006",
+      "count": 796
+    },
+    {
+      "year": "2007",
+      "count": 904
+    },
+    {
+      "year": "2008",
+      "count": 718
+    },
+    {
+      "year": "2009",
+      "count": 422
+    },
+    {
+      "year": "2010",
+      "count": 373
+    },
+    {
+      "year": "2011",
+      "count": 410
+    },
+    {
+      "year": "2012",
+      "count": 421
+    },
+    {
+      "year": "2013",
+      "count": 391
+    },
+    {
+      "year": "2014",
+      "count": 458
+    },
+    {
+      "year": "2015",
+      "count": 493
+    },
+    {
+      "year": "2016",
+      "count": 445
+    },
+    {
+      "year": "2017",
+      "count": 438
+    },
+    {
+      "year": "2018",
+      "count": 487
+    },
+    {
+      "year": "2019",
+      "count": 554
+    },
+    {
+      "year": "2020",
+      "count": 461
+    },
+    {
+      "year": "2021",
+      "count": 417
+    },
+    {
+      "year": "2022",
+      "count": 423
+    },
+    {
+      "year": "2023",
+      "count": 468
+    },
+    {
+      "year": "2024",
+      "count": 539
+    },
+    {
+      "year": "2025",
+      "count": 489
+    },
+    {
+      "year": "2026",
+      "count": 97
+    }
+  ]
+}

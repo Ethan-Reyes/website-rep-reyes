@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aviation Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+      /* ============================================================
+           aviation.css — Inline styles for the aviation dashboard
+           Matches the warm editorial palette of web-reyes.css
+           ============================================================ */
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #1c1917;
+        color: #f5f0e8;
+        font-family: "DM Mono", "Courier New", monospace;
+        padding: 24px;
+      }
+
+      /* ── Header ── */
+      .dashboard-header {
+        margin-bottom: 32px;
+        border-bottom: 1px solid rgba(245, 240, 232, 0.1);
+        padding-bottom: 16px;
+      }
+
+      .dashboard-eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #b5651d;
+        margin-bottom: 8px;
+      }
+
+      .dashboard-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #f5f0e8;
+        margin-bottom: 4px;
+      }
+
+      .dashboard-subtitle {
+        font-size: 0.72rem;
+        color: rgba(245, 240, 232, 0.4);
+        letter-spacing: 1px;
+      }
+
+      /* ── Stats Bar ── */
+      .stats-bar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: rgba(245, 240, 232, 0.08);
+        border: 1px solid rgba(245, 240, 232, 0.08);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 32px;
+      }
+
+      .stat-cell {
+        background: #1c1917;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .stat-value {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.6rem;
+        font-weight: 900;
+        color: #d4854a;
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.35);
+      }
+
+      /* ── Charts Grid ── */
+      .charts-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .chart-card {
+        background: rgba(245, 240, 232, 0.03);
+        border: 1px solid rgba(245, 240, 232, 0.08);
+        border-radius: 4px;
+        padding: 20px;
+      }
+
+      .chart-card.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .chart-label {
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #b5651d;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .chart-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(245, 240, 232, 0.08);
+      }
+
+      .chart-container {
+        position: relative;
+        height: 220px;
+      }
+
+      .chart-container.tall {
+        height: 280px;
+      }
+
+      /* ── Loading & Error States ── */
+      .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        color: rgba(245, 240, 232, 0.3);
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+      }
+
+      .error-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        color: #b5651d;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* ── Footer ── */
+      .dashboard-footer {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(245, 240, 232, 0.08);
+        font-size: 0.62rem;
+        letter-spacing: 1px;
+        color: rgba(245, 240, 232, 0.2);
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ── Header ── -->
+    <div class="dashboard-header">
+      <p class="dashboard-eyebrow">FAA Aircraft Registry · Live Data</p>
+      <h1 class="dashboard-title">U.S. Aviation Dashboard</h1>
+      <p class="dashboard-subtitle" id="generated-at">Loading...</p>
+    </div>
+
+    <!-- ── Stats Bar ── -->
+    <div class="stats-bar">
+      <div class="stat-cell">
+        <span class="stat-value" id="total-aircraft">—</span>
+        <span class="stat-label">Aircraft Processed</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-value" id="top-state">—</span>
+        <span class="stat-label">Top State</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-value" id="top-engine">—</span>
+        <span class="stat-label">Top Engine Type</span>
+      </div>
+    </div>
+
+    <!-- ── Charts ── -->
+    <div class="charts-grid">
+      <!-- Aircraft by State -->
+      <div class="chart-card">
+        <p class="chart-label">Registrations by State</p>
+        <div class="chart-container">
+          <canvas id="chart-state"></canvas>
+        </div>
+      </div>
+
+      <!-- Aircraft by Engine Type -->
+      <div class="chart-card">
+        <p class="chart-label">Engine Type Breakdown</p>
+        <div class="chart-container">
+          <canvas id="chart-engine"></canvas>
+        </div>
+      </div>
+
+      <!-- Aircraft by Type -->
+      <div class="chart-card">
+        <p class="chart-label">Aircraft Type Distribution</p>
+        <div class="chart-container">
+          <canvas id="chart-type"></canvas>
+        </div>
+      </div>
+
+      <!-- Aircraft by Year — full width -->
+      <div class="chart-card full-width">
+        <p class="chart-label">Registrations by Manufacture Year</p>
+        <div class="chart-container tall">
+          <canvas id="chart-year"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <div class="dashboard-footer">
+      <span>Source: FAA Aircraft Registry (public dataset)</span>
+      <span id="footer-generated">Generated: —</span>
+    </div>
+
+    <script>
+      /* ============================================================
+           aviation.js — Inline dashboard script
+           Fetches aviation_stats.json and renders Chart.js charts
+           using the warm editorial color palette.
+           ============================================================ */
+
+      // ── Color Palette ─────────────────────────────────────
+      // Matches web-reyes.css CSS variables exactly
+      const AMBER = "#b5651d";
+      const AMBER_LT = "#d4854a";
+      const CREAM = "#f5f0e8";
+      const CHARCOAL = "#1c1917";
+      const TAN = "#c9b99a";
+
+      // Generate a graduated amber palette for multi-bar charts
+      const AMBER_PALETTE = [
+        "#b5651d",
+        "#c4742a",
+        "#d4854a",
+        "#e09060",
+        "#c9b99a",
+        "#a05515",
+        "#8a4510",
+        "#6b3408",
+        "#f0a070",
+        "#e8c4a0",
+        "#d4a080",
+        "#b08060",
+        "#906040",
+        "#704830",
+        "#503020",
+      ];
+
+      // ── Chart.js Global Defaults ──────────────────────────
+      // Apply once — affects all charts on this page
+      Chart.defaults.color = "rgba(245, 240, 232, 0.5)";
+      Chart.defaults.borderColor = "rgba(245, 240, 232, 0.08)";
+      Chart.defaults.font.family = "'DM Mono', 'Courier New', monospace";
+      Chart.defaults.font.size = 10;
+
+      // ── Data Loading ──────────────────────────────────────
+
+      /**
+       * Fetches aviation_stats.json and renders all charts.
+       * Shows an error state if the file is unavailable.
+       */
+      async function loadDashboard() {
+        try {
+          const response = await fetch("./data/aviation_stats.json");
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const data = await response.json();
+          renderDashboard(data);
+        } catch (error) {
+          console.error("[Aviation] Failed to load stats:", error.message);
+          document.querySelector(".charts-grid").innerHTML = `
+                    <div class="error-state" style="grid-column: 1/-1;">
+                        Could not load aviation data.<br>
+                        Run the C# pipeline and copy aviation_stats.json to data/
+                    </div>
+                `;
+        }
+      }
+
+      /**
+       * Renders all dashboard components from the stats JSON.
+       * @param {object} data - Parsed aviation_stats.json content
+       */
+      function renderDashboard(data) {
+        // ── Stats Bar ─────────────────────────────────────
+        document.getElementById("total-aircraft").textContent =
+          data.totalAircraft.toLocaleString();
+
+        document.getElementById("top-state").textContent =
+          data.aircraftByState?.[0]?.state ?? "—";
+
+        document.getElementById("top-engine").textContent =
+          data.aircraftByEngineType?.[0]?.engineType ?? "—";
+
+        // Format the generated timestamp
+        const generated = new Date(data.generatedAt);
+        const formatted = generated.toLocaleDateString("en-US", {
+          year: "month",
+          month: "short",
+          day: "numeric",
+        });
+        document.getElementById("generated-at").textContent =
+          `FAA data processed ${generated.toLocaleDateString()}`;
+        document.getElementById("footer-generated").textContent =
+          `Generated: ${generated.toLocaleString()}`;
+
+        // ── Chart 1: Registrations by State (Horizontal Bar) ──
+        renderBarChart(
+          "chart-state",
+          data.aircraftByState.map((d) => d.state),
+          data.aircraftByState.map((d) => d.count),
+          "Aircraft Registrations",
+          true, // horizontal
+        );
+
+        // ── Chart 2: Engine Type (Doughnut) ──────────────
+        renderDoughnutChart(
+          "chart-engine",
+          data.aircraftByEngineType.map((d) => d.engineType),
+          data.aircraftByEngineType.map((d) => d.count),
+        );
+
+        // ── Chart 3: Aircraft Type (Doughnut) ────────────
+        renderDoughnutChart(
+          "chart-type",
+          data.aircraftByType.map((d) => d.aircraftType),
+          data.aircraftByType.map((d) => d.count),
+        );
+
+        // ── Chart 4: Registrations by Year (Line) ────────
+        renderLineChart(
+          "chart-year",
+          data.aircraftByYear.map((d) => d.year),
+          data.aircraftByYear.map((d) => d.count),
+          "Aircraft Manufactured",
+        );
+      }
+
+      // ── Chart Renderers ───────────────────────────────────
+
+      /**
+       * Renders a bar chart (horizontal or vertical).
+       * @param {string} canvasId - Canvas element ID
+       * @param {string[]} labels - X-axis labels
+       * @param {number[]} values - Data values
+       * @param {string} label - Dataset label
+       * @param {boolean} horizontal - True for horizontal bars
+       */
+      function renderBarChart(
+        canvasId,
+        labels,
+        values,
+        label,
+        horizontal = false,
+      ) {
+        const ctx = document.getElementById(canvasId).getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                label,
+                data: values,
+                backgroundColor: AMBER_PALETTE.slice(0, labels.length),
+                borderWidth: 0,
+                borderRadius: 2,
+              },
+            ],
+          },
+          options: {
+            indexAxis: horizontal ? "y" : "x",
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: "#3d3935",
+                titleColor: CREAM,
+                bodyColor: AMBER_LT,
+                borderColor: AMBER,
+                borderWidth: 1,
+              },
+            },
+            scales: {
+              x: { grid: { color: "rgba(245,240,232,0.05)" } },
+              y: { grid: { color: "rgba(245,240,232,0.05)" } },
+            },
+          },
+        });
+      }
+
+      /**
+       * Renders a doughnut chart.
+       * @param {string} canvasId - Canvas element ID
+       * @param {string[]} labels - Segment labels
+       * @param {number[]} values - Segment values
+       */
+      function renderDoughnutChart(canvasId, labels, values) {
+        const ctx = document.getElementById(canvasId).getContext("2d");
+        new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels,
+            datasets: [
+              {
+                data: values,
+                backgroundColor: AMBER_PALETTE.slice(0, labels.length),
+                borderWidth: 0,
+                hoverOffset: 4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "right",
+                labels: {
+                  boxWidth: 10,
+                  padding: 8,
+                  font: { size: 9 },
+                  color: "rgba(245,240,232,0.6)",
+                },
+              },
+              tooltip: {
+                backgroundColor: "#3d3935",
+                titleColor: CREAM,
+                bodyColor: AMBER_LT,
+                borderColor: AMBER,
+                borderWidth: 1,
+              },
+            },
+          },
+        });
+      }
+
+      /**
+       * Renders a line chart.
+       * @param {string} canvasId - Canvas element ID
+       * @param {string[]} labels - X-axis labels
+       * @param {number[]} values - Data values
+       * @param {string} label - Dataset label
+       */
+      function renderLineChart(canvasId, labels, values, label) {
+        const ctx = document.getElementById(canvasId).getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels,
+            datasets: [
+              {
+                label,
+                data: values,
+                borderColor: AMBER,
+                backgroundColor: "rgba(181, 101, 29, 0.1)",
+                pointBackgroundColor: AMBER_LT,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                borderWidth: 2,
+                fill: true,
+                tension: 0.3,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: "#3d3935",
+                titleColor: CREAM,
+                bodyColor: AMBER_LT,
+                borderColor: AMBER,
+                borderWidth: 1,
+              },
+            },
+            scales: {
+              x: { grid: { color: "rgba(245,240,232,0.05)" } },
+              y: { grid: { color: "rgba(245,240,232,0.05)" } },
+            },
+          },
+        });
+      }
+
+      // ── Init ──────────────────────────────────────────────
+      loadDashboard();
+    </script>
+  </body>
+</html>

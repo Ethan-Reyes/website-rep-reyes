@@ -1,83 +1,77 @@
 # Ethan Reyes — Engineering & Cloud Development Portfolio
 
-**Data Engineer & Software Developer | Wichita, KS**
-[ethanreyes.netlify.app](https://ethanreyes.netlify.app) • [GitHub](https://github.com/Ethan-Reyes) • [LinkedIn](https://linkedin.com)
+**Data Engineer & Software Developer | Wichita, KS** [ethanreyes.netlify.app](https://ethanreyes.netlify.app) • [GitHub](https://github.com/Ethan-Reyes) • [LinkedIn](https://linkedin.com/in/ethan-reyes)
+
+---
 
 ## 🚀 Project Mission
+A technical showcase bridging heavy-industry data with modern cloud-native applications. This project serves as a professional portfolio and an engineering sandbox for exploring **Data Engineering**, **Systems Automation**, and **Advanced Software Management**.
 
-A technical showcase bridging heavy-industry data with modern cloud-native applications. This project serves as a professional portfolio and an engineering sandbox for exploring **Data Engineering**, **Systems Automation**, and **Software Management**.
-
-## 🎓 About the Author
-
-- **Education:** AAS in Cloud Computing & App Development (WSU Tech) | Expected 2027
-- **Standing:** 4.0 GPA
-- **Current Role:** Engineering Assistant at **Textron Aviation** (Ennovar Contractor)
-- **Roadmap:** Transferring to **Wichita State University** to pursue a B.S. in Applied Engineering followed by a Master’s in Engineering Management (Expected 2029).
-
----
-
-## 🌐 Cloud Architecture & Deployment Philosophy
-
-> _"Efficiency in infrastructure allows for excellence in engineering."_
-
-To maximize focus on **Applied Engineering** and **Aviation Diagnostics**, this portfolio utilizes a modern **Serverless Cloud Architecture**:
-
-- **Continuous Integration/Deployment (CI/CD):** Integrated with GitHub to automate the build pipeline. Every structural update is verified and deployed instantly upon `git push`.
-- **Serverless Edge Distribution:** Leverages **Netlify** to ensure 99.9% availability and global performance with **Zero Infrastructure Overhead**.
-- **Operational Excellence:** By abstracting server management, 100% of development bandwidth is shifted toward high-value engineering output (AReS 3 diagnostics) rather than environment maintenance.
-- **Serverless Functions:** Custom backend logic handles visitor tracking and resume download logging without a traditional server.
-
----
+## 🎓 Professional Profile & Education
+* **Current Role:** Data & Compliance Contractor at **Textron Aviation** (via Ennovar).
+* **Academic Path:** Pursuing an AAS in Cloud Computing (WSU Tech, 2027) with a transition to **Wichita State University** for a **B.S. in Applied Engineering** and a **Master’s in Engineering Management** (Expected 2029).
+* **Development Philosophy:** Utilizes a **multi-model AI framework**—leveraging Claude for rapid code development and Gemini for logical auditing, security analysis, and architectural problem-solving.
 
 ## 🛠 Featured Engineering Projects
 
-### 1. 3D Visitor Globe
+### 1. AReS 3 Diagnostic Information Webpage
+* **Context:** Developed for **Textron Aviation** to support aircraft technicians.
+* **Engineering:** Designed and deployed an internal technical reference application directly onto embedded AReS 3 hardware.
+* **Deployment:** Utilized **Windows PowerShell** and **SSH** for remote embedded systems management.
 
-Built a fully working interactive 3D globe using **Three.js** featuring a rotating Earth, amber atmospheric glow, and orbit controls. It features glowing amber pins that scale with visit counts, pulling data directly from a `get-stats` Netlify function.
+### 2. 3D Visitor Globe (Three.js & Serverless)
+* **Visual Engineering:** Built an interactive 3D globe using **Three.js** featuring a rotating Earth and amber atmospheric glow.
+* **Live Data:** Integrated with **Netlify Serverless Functions** to plot real-time visitor coordinates as glowing amber pins.
 
-### 2. Aviation Data Pipeline (C# / .NET)
+### 3. Aviation Data Pipeline (C# / .NET)
+* **Data Engineering:** Developed a .NET ingestion engine to process large-scale FAA aviation datasets.
+* **Pipeline:** Cleans and structures raw data for visualization in **Power BI**, mimicking enterprise aerospace diagnostic workflows.
 
-Developed a C# .NET ingestion engine to process FAA aviation data. This application pulls raw datasets, cleans and structures them, and prepares the data for visualization in Power BI, mimicking enterprise aerospace diagnostic workflows.
+### 4. AI-Powered Transcription Pipeline (Python & OpenAI Whisper)
+* **Automation:** Developed a custom Python pipeline using **Whisper** and **FFmpeg** to automate the transcription of 8+ hours of technical interview audio.
+* **Output:** Programmatically merged and formatted transcripts into a structured master documentation format.
 
-### 3. AI-Powered Transcription Pipeline (Python & Whisper)
+### 5. Automated Test Suite (TDD with Jest & JSDOM)
+* **Integrity:** 32+ tests across 6 suites covering UI logic, navigation, and DOM integrity.
+* **Security:** Engineered and validated **XSS (Cross-Site Scripting) sanitization** logic to ensure secure data handling.
 
-- **The Challenge:** Automating the transcription of 8+ hours of raw technical interview audio.
-- **The Solution:** Developed a custom Python pipeline utilizing **OpenAI Whisper** and **FFmpeg**.
-- **Achievement:** Engineered scripts to programmatically merge and format individual transcripts into a structured technical master document.
+## 🌐 Cloud Architecture & Deployment
+> *"Efficiency in infrastructure allows for excellence in engineering."*
 
-### 4. Automated Test Suite (TDD with Jest & JSDOM)
-
-- **Integrity:** 32 tests across 6 specialized suites covering UI logic, navigation, and DOM integrity.
-- **Security:** Developed and validated **XSS (Cross-Site Scripting) sanitization** logic to ensure secure handling of interview data.
-
-### 5. Data Pipeline & Analytics
-
-Developed a Python-based ETL pipeline to extract visitor metrics from Netlify Blobs API. Implemented secure credential management using `python-dotenv` and visualized site performance via a **Power BI** dashboard.
-
----
+To maximize focus on applied engineering, this portfolio utilizes a modern **Serverless Architecture**:
+* **CI/CD:** Automated build pipelines integrated with GitHub for instant verification and deployment.
+* **Serverless Edge:** Leveraging **Netlify** for 99.9% availability and global performance with zero infrastructure overhead.
+* **Operational Excellence:** Abstracting server management allows 100% bandwidth to be shifted toward high-value engineering output.
 
 ## 💻 Technical Stack
 
-| Layer            | Technologies                                            |
-| :--------------- | :------------------------------------------------------ |
-| **Frontend**     | HTML5, CSS3, JavaScript (ES6+), Three.js                |
-| **Languages**    | Python, C#, PowerShell, Java, .NET                      |
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | HTML5, CSS3, JavaScript (ES6+), Three.js |
+| **Languages** | Python (PCEP Certified), C#, PowerShell, Java, .NET |
 | **Cloud/DevOps** | AWS (Certified Cloud Practitioner), Netlify, Git/GitHub |
-| **Data/Testing** | Power BI, Jest, JSDOM, SQL                              |
+| **Data/Testing** | Power BI, SQLite, Jest, JSDOM |
 
----
-
-## 📂 Project Structure
-
+## 📂 Repository Structure
 ```text
 Website Project/
-├── code/                       # Main development directory
-│   ├── web-reyes.html          # SPA Portfolio
-│   ├── web-reyes.test.js       # TDD Test Suite (32 Tests)
-│   ├── globe/                  # 3D Globe Assets
-│   └── aviation_pipeline/      # C# Data Project
+├── code/                          # Main Development Directory
+│   ├── aviation_pipeline/         # C# Aviation Data Project (.NET 10)
+│   ├── docs/                      # Technical Documentation & Master Transcripts
+│   ├── globe/                     # 3D Globe Assets & Three.js Logic
+│   ├── images/                    # UI/UX Assets & Professional Media
+│   ├── visitor-tracking/          # Analytics Logic & Data Visualization
+│   ├── whisper_pipeline/          # Python & OpenAI Whisper Automation
+│   ├── web-reyes.html             # Main SPA Portfolio
+│   └── web-reyes.test.js          # TDD Test Suite (32 Tests)
 ├── netlify/
-│   └── functions/              # Serverless backend logic
-├── netlify.toml                # CI/CD configuration
-└── README.md
-```
+│   └── functions/                 # Serverless Backend (Visitor Counter, Geolocation)
+├── tools/                         # Automation & Scraping Scripts
+├── .gitignore                     # Security Filters (Hides .env, .pbix, etc.)
+├── LICENSE                        # CC BY-NC 4.0 (Legal Protection)
+├── README.md                      # Project Roadmap & Overview
+├── TECH.md                        # Technical Manifesto
+├── netlify.toml                   # Deployment Configuration
+└── package.json                   # Project Dependencies
+---
+*© 2026 Ethan Reyes. Built with a focus on Applied Engineering and Data Integrity.*

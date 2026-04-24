@@ -1,15 +1,24 @@
-# Local Secrets
+# Local Secrets & Credentials
 .env
 tools/.env
+**/*.env
 
-# Data Files
+# IDE Settings (Hides local paths and workspace configs)
+.vscode/
+
+# Private/Sensitive Folders
+interviews/
+
+# Data Files (Crucial for Power BI & CSV logs)
 *.csv
 portfolio_metrics.csv
+**/*.pbix
 
-# Python environment
+# Python & Environment
 __pycache__/
 .venv/
-
 node_modules/
 
-**/*.pbix
+# C# Build Artifacts
+bin/
+obj/

@@ -222,7 +222,9 @@ function addPin(lat, lon, visits) {
 // ── Fetch visitor data and plot pins ─────────────────────────
 async function loadVisitorData() {
   try {
-    const response = await fetch("/.netlify/functions/get-stats");
+    const response = await fetch(
+      "https://reyes-engineering.netlify.app/.netlify/functions/get-stats",
+    );
     const data = await response.json();
 
     if (!data.success || !data.countrySummary) return;

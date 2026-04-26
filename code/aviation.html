@@ -287,7 +287,7 @@
        */
       async function loadDashboard() {
         try {
-          const response = await fetch("/data/aviation_stats.json");
+          const response = await fetch("./data/aviation_stats.json");
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const data = await response.json();
           renderDashboard(data);
@@ -320,7 +320,7 @@
         // Format the generated timestamp
         const generated = new Date(data.generatedAt);
         const formatted = generated.toLocaleDateString("en-US", {
-          year: "month",
+          year: "numeric",
           month: "short",
           day: "numeric",
         });

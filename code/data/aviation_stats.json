@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T00:47:01.6453389Z",
+  "generatedAt": "2026-04-26T05:47:30.8906872Z",
   "totalAircraft": 50000,
   "aircraftByState": [
     {
@@ -65,14 +65,90 @@
   ],
   "aircraftByEngineType": [
     {
-      "engineType": "Unknown",
-      "count": 50000
+      "engineType": "Reciprocating",
+      "count": 34179
+    },
+    {
+      "engineType": "4 Cycle",
+      "count": 3887
+    },
+    {
+      "engineType": "Turbo-Fan",
+      "count": 3793
+    },
+    {
+      "engineType": "Turbo-Prop",
+      "count": 2248
+    },
+    {
+      "engineType": "None",
+      "count": 1933
+    },
+    {
+      "engineType": "Turbo-Shaft",
+      "count": 1775
+    },
+    {
+      "engineType": "Electric",
+      "count": 1197
+    },
+    {
+      "engineType": "2 Cycle",
+      "count": 728
+    },
+    {
+      "engineType": "Turbo-Jet",
+      "count": 247
+    },
+    {
+      "engineType": "Rotary",
+      "count": 13
     }
   ],
   "aircraftByType": [
     {
-      "aircraftType": "Unknown",
-      "count": 50000
+      "aircraftType": "Fixed Wing Single Engine",
+      "count": 36155
+    },
+    {
+      "aircraftType": "Fixed Wing Multi Engine",
+      "count": 7425
+    },
+    {
+      "aircraftType": "Rotorcraft",
+      "count": 3758
+    },
+    {
+      "aircraftType": "Glider",
+      "count": 1139
+    },
+    {
+      "aircraftType": "Balloon",
+      "count": 983
+    },
+    {
+      "aircraftType": "Powered Parachute",
+      "count": 239
+    },
+    {
+      "aircraftType": "Weight-Shift-Control",
+      "count": 154
+    },
+    {
+      "aircraftType": "Hybrid Lift",
+      "count": 73
+    },
+    {
+      "aircraftType": "Gyroplane",
+      "count": 56
+    },
+    {
+      "aircraftType": "Blimp/Dirigible",
+      "count": 15
+    },
+    {
+      "aircraftType": "Other",
+      "count": 3
     }
   ],
   "aircraftByYear": [

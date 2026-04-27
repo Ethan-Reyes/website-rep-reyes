@@ -4,7 +4,7 @@ import os
 
 model = whisper.load_model("small")
 
-folder = r"C:\Users\Administrator\OneDrive\Documents\personal coding files\HTML-JS-CSS Projects\Website Project\Bill Scott Interview Recordings"
+folder = r"C:\Users\Administrator\OneDrive\Documents\personal coding files\coding projects\Website Project\code\audio"
 
 for filename in os.listdir(folder):
     if filename.endswith(".mp3"):

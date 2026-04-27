@@ -727,7 +727,9 @@ describe("ETL Pipeline & Fetch Retry", () => {
     });
 
     // Act
-    const result = await fetchWithRetry("/.netlify/functions/get-stats");
+    const result = await fetchWithRetry(
+      "https://reyes-engineering.netlify.app/.netlify/functions/get-stats",
+    );
 
     // Assert
     expect(result).toEqual(mockData);
@@ -746,7 +748,7 @@ describe("ETL Pipeline & Fetch Retry", () => {
 
     // Act
     const result = await fetchWithRetry(
-      "/.netlify/functions/get-stats",
+      "https://reyes-engineering.netlify.app/.netlify/functions/get-stats",
       {},
       3,
       0,
@@ -763,7 +765,12 @@ describe("ETL Pipeline & Fetch Retry", () => {
 
     // Act & Assert
     await expect(
-      fetchWithRetry("/.netlify/functions/get-stats", {}, 3, 0),
+      fetchWithRetry(
+        "https://reyes-engineering.netlify.app/.netlify/functions/get-stats",
+        {},
+        3,
+        0,
+      ),
     ).rejects.toThrow("Network down");
     expect(global.fetch).toHaveBeenCalledTimes(3);
   });
@@ -778,7 +785,11 @@ describe("ETL Pipeline & Fetch Retry", () => {
 
     // Act & Assert
     await expect(
-      fetchWithRetry("/.netlify/functions/get-stats", {}, 1),
+      fetchWithRetry(
+        "https://reyes-engineering.netlify.app/.netlify/functions/get-stats",
+        {},
+        1,
+      ),
     ).rejects.toThrow("HTTP 500");
   });
 
@@ -805,7 +816,9 @@ describe("ETL Pipeline & Fetch Retry", () => {
     });
 
     // Act
-    const data = await fetchWithRetry("/.netlify/functions/get-stats");
+    const data = await fetchWithRetry(
+      "https://reyes-engineering.netlify.app/.netlify/functions/get-stats",
+    );
 
     // Assert
     expect(data).toHaveProperty("success", true);
@@ -833,7 +846,9 @@ describe("ETL Pipeline & Fetch Retry", () => {
     });
 
     // Act
-    const data = await fetchWithRetry("/.netlify/functions/get-stats");
+    const data = await fetchWithRetry(
+      "https://reyes-engineering.netlify.app/.netlify/functions/get-stats",
+    );
 
     // Assert
     data.countrySummary.forEach((entry) => {

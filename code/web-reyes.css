@@ -1182,3 +1182,10 @@ section {
   border: none;
   display: block;
 }
+
+.whisper-embed iframe {
+  width: 100%;
+  height: 520px;
+  border: none;
+  display: block;
+}

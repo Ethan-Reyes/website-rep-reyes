@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whisper Demo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+       whisper-demo.css — Inline styles for the Whisper demo section
+       Matches the warm editorial palette of web-reyes.css
+       ============================================================ */
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: #1c1917;
+        color: #f5f0e8;
+        font-family: "DM Mono", "Courier New", monospace;
+        padding: 32px 24px;
+      }
+
+      /* ── Section Header ── */
+      .whisper-eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #b5651d;
+        margin-bottom: 8px;
+      }
+
+      .whisper-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #f5f0e8;
+        margin-bottom: 6px;
+      }
+
+      .whisper-subtitle {
+        font-size: 0.72rem;
+        color: rgba(245, 240, 232, 0.4);
+        letter-spacing: 1px;
+        margin-bottom: 32px;
+      }
+
+      /* ── Main Layout ── */
+      .whisper-demo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: rgba(245, 240, 232, 0.08);
+        border: 1px solid rgba(245, 240, 232, 0.08);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      /* ── Left Panel — Audio ── */
+      .audio-panel {
+        background: #1c1917;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .panel-label {
+        font-size: 0.62rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #b5651d;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .panel-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(245, 240, 232, 0.08);
+      }
+
+      /* ── Waveform ── */
+      .waveform-container {
+        position: relative;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 0 4px;
+        cursor: pointer;
+      }
+
+      .waveform-bar {
+        flex: 1;
+        background: rgba(181, 101, 29, 0.25);
+        border-radius: 2px;
+        transition: background 0.1s ease;
+        min-height: 3px;
+      }
+
+      .waveform-bar.active {
+        background: #d4854a;
+      }
+
+      .waveform-bar.played {
+        background: rgba(181, 101, 29, 0.5);
+      }
+
+      /* Progress overlay */
+      .waveform-progress {
+        position: absolute;
+        top: 0;
+        left: 4px;
+        height: 100%;
+        width: 0%;
+        pointer-events: none;
+        transition: width 0.1s linear;
+      }
+
+      /* ── Controls ── */
+      .audio-controls {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .play-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #b5651d;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition:
+          background 0.15s ease,
+          transform 0.1s ease;
+      }
+
+      .play-btn:hover {
+        background: #d4854a;
+        transform: scale(1.05);
+      }
+      .play-btn:active {
+        transform: scale(0.97);
+      }
+
+      .play-icon {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 0 7px 13px;
+        border-color: transparent transparent transparent #f5f0e8;
+        margin-left: 3px;
+        transition: all 0.1s;
+      }
+
+      .pause-icon {
+        display: none;
+        gap: 3px;
+      }
+
+      .pause-icon span {
+        display: block;
+        width: 4px;
+        height: 14px;
+        background: #f5f0e8;
+        border-radius: 2px;
+      }
+
+      .playing .play-icon {
+        display: none;
+      }
+      .playing .pause-icon {
+        display: flex;
+      }
+
+      .time-display {
+        font-size: 0.7rem;
+        color: rgba(245, 240, 232, 0.4);
+        letter-spacing: 1px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ── Source Attribution ── */
+      .audio-source {
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid rgba(245, 240, 232, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .source-tag {
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.25);
+      }
+
+      .source-name {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 0.85rem;
+        color: rgba(245, 240, 232, 0.6);
+      }
+
+      .source-context {
+        font-size: 0.62rem;
+        color: rgba(245, 240, 232, 0.25);
+        letter-spacing: 0.5px;
+      }
+
+      /* ── Right Panel — Transcript ── */
+      .transcript-panel {
+        background: rgba(245, 240, 232, 0.02);
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .transcript-body {
+        flex: 1;
+        line-height: 2.1;
+        font-size: 0.85rem;
+        color: rgba(245, 240, 232, 0.25);
+        letter-spacing: 0.3px;
+      }
+
+      .transcript-word {
+        display: inline;
+        transition: color 0.08s ease;
+        padding: 0 1px;
+      }
+
+      .transcript-word.spoken {
+        color: rgba(245, 240, 232, 0.5);
+      }
+
+      .transcript-word.current {
+        color: #d4854a;
+        text-shadow: 0 0 12px rgba(212, 133, 74, 0.4);
+      }
+
+      /* ── Pipeline Badge ── */
+      .pipeline-badge {
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid rgba(245, 240, 232, 0.06);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #b5651d;
+        flex-shrink: 0;
+      }
+
+      .badge-text {
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.25);
+      }
+
+      .badge-model {
+        margin-left: auto;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        color: rgba(181, 101, 29, 0.6);
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Header ── -->
+    <p class="whisper-eyebrow">AI Tooling · Whisper Pipeline</p>
+    <h2 class="whisper-title">The Interviewer's Toolkit</h2>
+    <p class="whisper-subtitle">
+      Raw audio in. Structured transcript out. Press play to watch it happen.
+    </p>
+
+    <!-- ── Demo ── -->
+    <div class="whisper-demo">
+      <!-- Left: Audio -->
+      <div class="audio-panel">
+        <p class="panel-label">Raw Audio</p>
+
+        <!-- Waveform -->
+        <div class="waveform-container" id="waveform" title="Click to seek">
+          <div class="waveform-progress" id="waveform-progress"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="audio-controls">
+          <button class="play-btn" id="play-btn" aria-label="Play audio">
+            <span class="play-icon"></span>
+            <span class="pause-icon"><span></span><span></span></span>
+          </button>
+          <span class="time-display" id="time-display">0:00 / 0:22</span>
+        </div>
+
+        <!-- Hidden audio element -->
+        <audio id="audio-el" preload="metadata">
+          <source src="audio/dark_underbelly_ai.m4a" type="audio/mp4" />
+        </audio>
+
+        <!-- Source -->
+        <div class="audio-source">
+          <span class="source-tag">Source</span>
+          <span class="source-name">Bill Scott on AI</span>
+          <span class="source-context"
+            >Episode 01 · BrainPaint Inc. · Unedited field recording</span
+          >
+        </div>
+      </div>
+
+      <!-- Right: Transcript -->
+      <div class="transcript-panel">
+        <p class="panel-label">Whisper Transcript</p>
+
+        <div class="transcript-body" id="transcript-body">
+          <!-- Words injected by JS -->
+        </div>
+
+        <div class="pipeline-badge">
+          <span class="badge-dot"></span>
+          <span class="badge-text">OpenAI Whisper · Word-level timestamps</span>
+          <span class="badge-model">whisper-small</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ============================================================
+       whisper-demo.js — Inline script for Whisper transcript demo
+       Syncs transcript word highlighting to audio playback using
+       word-level timestamps from Whisper JSON output.
+       ============================================================ */
+
+      "use strict";
+
+      // ── Word Timestamps (from Whisper JSON output) ────────────
+      const WORDS = [
+        { word: "Yeah,", start: 0.0, end: 0.28 },
+        { word: "and", start: 0.82, end: 1.1 },
+        { word: "they", start: 1.1, end: 1.34 },
+        { word: "also,", start: 1.34, end: 1.7 },
+        { word: "they", start: 1.78, end: 2.56 },
+        { word: "create", start: 2.56, end: 3.04 },
+        { word: "trust", start: 3.04, end: 3.76 },
+        { word: "when", start: 3.76, end: 4.56 },
+        { word: "the", start: 4.56, end: 4.78 },
+        { word: "machine", start: 4.78, end: 5.2 },
+        { word: "handles", start: 5.2, end: 5.9 },
+        { word: "more", start: 5.9, end: 6.2 },
+        { word: "things.", start: 6.2, end: 6.52 },
+        { word: "But", start: 6.72, end: 7.12 },
+        { word: "here's", start: 7.12, end: 7.46 },
+        { word: "the", start: 7.46, end: 7.6 },
+        { word: "flip", start: 7.6, end: 7.9 },
+        { word: "side", start: 7.9, end: 8.3 },
+        { word: "of", start: 8.3, end: 8.6 },
+        { word: "that.", start: 8.6, end: 8.86 },
+        { word: "The", start: 9.08, end: 9.44 },
+        { word: "dark", start: 9.44, end: 9.88 },
+        { word: "underbelly", start: 9.88, end: 10.78 },
+        { word: "of", start: 10.78, end: 11.06 },
+        { word: "AI", start: 11.06, end: 11.52 },
+        { word: "is", start: 11.52, end: 12.58 },
+        { word: "the", start: 12.58, end: 13.02 },
+        { word: "more", start: 13.02, end: 13.4 },
+        { word: "that", start: 13.4, end: 13.6 },
+        { word: "I", start: 13.6, end: 13.72 },
+        { word: "automate", start: 13.72, end: 14.26 },
+        { word: "things,", start: 14.26, end: 14.86 },
+        { word: "the", start: 15.2, end: 15.84 },
+        { word: "higher", start: 15.84, end: 17.02 },
+        { word: "the", start: 17.02, end: 17.44 },
+        { word: "threshold", start: 17.44, end: 17.94 },
+        { word: "is", start: 17.94, end: 18.12 },
+        { word: "that", start: 18.12, end: 18.28 },
+        { word: "everything", start: 18.28, end: 18.84 },
+        { word: "works", start: 18.84, end: 19.22 },
+        { word: "perfectly", start: 19.22, end: 19.86 },
+        { word: "or", start: 19.86, end: 20.32 },
+        { word: "that", start: 20.32, end: 20.5 },
+        { word: "everything", start: 20.5, end: 20.98 },
+        { word: "works", start: 20.98, end: 21.32 },
+        { word: "exactly", start: 21.32, end: 21.74 },
+        { word: "as", start: 21.74, end: 22.0 },
+        { word: "it", start: 22.0, end: 22.12 },
+        { word: "is.", start: 22.12, end: 22.38 },
+      ];
+
+      // ── DOM References ────────────────────────────────────────
+      const audioEl = document.getElementById("audio-el");
+      const playBtn = document.getElementById("play-btn");
+      const timeDisplay = document.getElementById("time-display");
+      const waveform = document.getElementById("waveform");
+      const waveProgress = document.getElementById("waveform-progress");
+      const transcriptEl = document.getElementById("transcript-body");
+
+      // ── Build Waveform Bars ───────────────────────────────────
+      // Generate pseudo-random bar heights seeded for consistency
+      const BAR_COUNT = 60;
+      const heights = [];
+      let seed = 42;
+      for (let i = 0; i < BAR_COUNT; i++) {
+        seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+        const h = 15 + (Math.abs((seed >> 16) & 0xff) / 255) * 65;
+        heights.push(h);
+        const bar = document.createElement("div");
+        bar.className = "waveform-bar";
+        bar.style.height = h + "px";
+        bar.dataset.index = i;
+        waveform.appendChild(bar);
+      }
+
+      // ── Build Transcript Words ────────────────────────────────
+      WORDS.forEach((w, i) => {
+        const span = document.createElement("span");
+        span.className = "transcript-word";
+        span.textContent = w.word + " ";
+        span.dataset.index = i;
+        transcriptEl.appendChild(span);
+      });
+
+      const wordSpans = transcriptEl.querySelectorAll(".transcript-word");
+      const bars = waveform.querySelectorAll(".waveform-bar");
+
+      // ── Playback Controls ─────────────────────────────────────
+      playBtn.addEventListener("click", () => {
+        if (audioEl.paused) {
+          audioEl.play();
+          playBtn.classList.add("playing");
+        } else {
+          audioEl.pause();
+          playBtn.classList.remove("playing");
+        }
+      });
+
+      audioEl.addEventListener("ended", () => {
+        playBtn.classList.remove("playing");
+      });
+
+      // ── Time Update — Sync words and waveform ─────────────────
+      audioEl.addEventListener("timeupdate", () => {
+        const t = audioEl.currentTime;
+        const duration = audioEl.duration || 22.38;
+        const progress = t / duration;
+
+        // Update waveform progress
+        waveProgress.style.width = progress * 100 + "%";
+
+        // Update waveform bar colors
+        const playedIndex = Math.floor(progress * BAR_COUNT);
+        bars.forEach((bar, i) => {
+          bar.classList.remove("active", "played");
+          if (i < playedIndex) bar.classList.add("played");
+          else if (i === playedIndex) bar.classList.add("active");
+        });
+
+        // Update time display
+        const cur = formatTime(t);
+        const dur = formatTime(duration);
+        timeDisplay.textContent = `${cur} / ${dur}`;
+
+        // Update word highlights
+        wordSpans.forEach((span, i) => {
+          const w = WORDS[i];
+          span.classList.remove("current", "spoken");
+          if (t >= w.end) span.classList.add("spoken");
+          else if (t >= w.start) span.classList.add("current");
+        });
+      });
+
+      // ── Waveform Click to Seek ────────────────────────────────
+      waveform.addEventListener("click", (e) => {
+        const rect = waveform.getBoundingClientRect();
+        const ratio = (e.clientX - rect.left) / rect.width;
+        const duration = audioEl.duration || 22.38;
+        audioEl.currentTime = ratio * duration;
+      });
+
+      // ── Helpers ───────────────────────────────────────────────
+      function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60)
+          .toString()
+          .padStart(2, "0");
+        return `${m}:${sec}`;
+      }
+    </script>
+  </body>
+</html>

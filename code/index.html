@@ -578,13 +578,29 @@
               </div>
             </div>
 
-            <!-- Haines Todd — Coming Soon -->
-            <div class="interview-card interview-card--soon" id="card-haines">
-              <div class="interview-card-header" role="presentation">
-                <div
-                  class="interview-card-photo-wrap interview-card-photo-wrap--soon"
-                >
-                  <span class="soon-icon">?</span>
+            <!-- Haines Todd — Episode 02 -->
+            <div class="interview-card" id="card-haines">
+              <div
+                class="interview-card-header"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+                aria-controls="body-haines"
+                onclick="toggleInterview('haines')"
+                onkeydown="
+                  if (event.key === 'Enter' || event.key === ' ')
+                    toggleInterview('haines');
+                "
+              >
+                <div class="interview-card-photo-wrap">
+                  <img
+                    class="interview-card-photo"
+                    src="images/Haines_Todd_Pic.jpeg"
+                    alt="Haines Todd"
+                    width="130"
+                    height="160"
+                    loading="lazy"
+                  />
                 </div>
                 <div class="interview-card-intro">
                   <p class="interview-card-eyebrow">Episode 02</p>
@@ -593,12 +609,197 @@
                     Software Engineer — Textron Aviation
                   </p>
                   <p class="interview-card-teaser">
-                    Creator of the AReS 3 diagnostic airplane system. Interview
-                    coming soon.
+                    Creator of the AReS 3 aircraft diagnostic system. On
+                    encapsulation, FPGA timing, and why you should build the
+                    first version just to throw it away.
                   </p>
+                  <div class="interview-card-meta">
+                    <span>Embedded Systems · FPGA · DO-178C</span>
+                    <span>Textron Aviation · Wichita, KS</span>
+                  </div>
                 </div>
-                <div class="interview-card-toggle interview-card-toggle--soon">
-                  <span>Coming soon</span>
+                <div class="interview-card-toggle" id="toggle-haines">
+                  <span>Read more</span>
+                  <span class="toggle-arrow">↓</span>
+                </div>
+              </div>
+
+              <div class="interview-card-body" id="body-haines">
+                <!-- Bio -->
+                <p class="interview-bio-full">
+                  Haines Todd is a software engineer at Textron Aviation in
+                  Wichita, Kansas, where he has spent his career building
+                  safety-critical avionics software. He joined Textron as an
+                  intern in 2017, where he began work on AReS 3 — an aircraft
+                  diagnostic system he would go on to lead. His work spans
+                  low-level FPGA firmware, embedded C, and Python, all governed
+                  by the rigorous DO-178C aviation software standard. He started
+                  writing code on microcontrollers in eighth grade and never
+                  stopped.
+                </p>
+
+                <!-- Meta Bar -->
+                <div class="interview-meta-bar">
+                  <span><strong>Company</strong> · Textron Aviation</span>
+                  <span><strong>Role</strong> · Software Engineer</span>
+                  <span><strong>Languages</strong> · C, Python, VHDL</span>
+                  <span><strong>Standard</strong> · DO-178C</span>
+                </div>
+
+                <!-- Quotes -->
+                <p class="content-label">Key Quotes</p>
+                <div class="quotes-grid">
+                  <div class="quote-card">
+                    <blockquote>
+                      "You can study requirements and get yourself into
+                      paralysis analysis — but really, you just need to start
+                      somewhere. Even if it's completely wrong, you've at least
+                      learned one way to not do it."
+                    </blockquote>
+                    <span class="quote-tag">On Getting Started</span>
+                  </div>
+
+                  <div class="quote-card">
+                    <blockquote>
+                      "Learning how to use encapsulation is very important. Be
+                      able to draw boxes around things — take the inputs and the
+                      outputs and hide the complexity inside the box."
+                    </blockquote>
+                    <span class="quote-tag">On Engineering Fundamentals</span>
+                  </div>
+
+                  <div class="quote-card">
+                    <blockquote>
+                      "Sometimes you make that first version of the software
+                      that's kind of working — that was your learning
+                      experience. Sometimes you have to be willing to throw that
+                      away and start over to make a cleaner final version."
+                    </blockquote>
+                    <span class="quote-tag">On Iteration</span>
+                  </div>
+
+                  <div class="quote-card">
+                    <blockquote>
+                      "Go check the simple things first. Even on a purely
+                      software project — a lot of times my issue would come down
+                      to something really stupid, like a 6-volt battery running
+                      low."
+                    </blockquote>
+                    <span class="quote-tag">On Debugging</span>
+                  </div>
+
+                  <div class="quote-card">
+                    <blockquote>
+                      "Try to be consistent with your coding style so that you
+                      can look at any block of code you wrote five years ago and
+                      still remember your methodology for writing it."
+                    </blockquote>
+                    <span class="quote-tag">On Code Quality</span>
+                  </div>
+
+                  <div class="quote-card">
+                    <blockquote>
+                      "Know who's driving your requirements — know who you're
+                      making the product for — so that you can make the right
+                      product."
+                    </blockquote>
+                    <span class="quote-tag">On Requirements</span>
+                  </div>
+                </div>
+
+                <!-- Insights -->
+                <p class="content-label">Key Insights</p>
+                <div class="insights-list">
+                  <div class="insight-item">
+                    <span class="insight-num">01</span>
+                    <div>
+                      <h4>Encapsulation is the universal engineering skill</h4>
+                      <p>
+                        Whether it's an FPGA, a microcontroller, a Python
+                        module, or a software library — the ability to draw a
+                        box around something and reduce it to just its inputs
+                        and outputs applies everywhere. It's not about any
+                        specific language; it's the mental model that transfers
+                        across all of engineering.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="insight-item">
+                    <span class="insight-num">02</span>
+                    <div>
+                      <h4>Build the first version to throw it away</h4>
+                      <p>
+                        The first working version of software is often a
+                        learning exercise disguised as a product. Haines's
+                        advice: be willing to discard it entirely once you
+                        understand the problem. The second version, built with
+                        that knowledge, is your real software.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="insight-item">
+                    <span class="insight-num">03</span>
+                    <div>
+                      <h4>
+                        Start before you're ready — but not without requirements
+                      </h4>
+                      <p>
+                        Two pieces of advice that seem to contradict each other
+                        but don't: start somewhere even if it's wrong, and know
+                        your requirements before you build. The key is knowing
+                        when analysis is productive and when it becomes
+                        paralysis.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="insight-item">
+                    <span class="insight-num">04</span>
+                    <div>
+                      <h4>
+                        FPGA timing is one of the hardest problems in hardware
+                      </h4>
+                      <p>
+                        Unlike sequential software, FPGAs define hardware —
+                        gates, registers, and clock signals. Data race
+                        conditions cause subtle bit corruption that can be
+                        nearly invisible. Getting timing right on AReS 3's
+                        low-level data interface was the hardest challenge of
+                        the project.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="insight-item">
+                    <span class="insight-num">05</span>
+                    <div>
+                      <h4>Avoid global variables like the plague</h4>
+                      <p>
+                        One of the most consistent pitfalls for developers at
+                        every level. Global state makes code harder to reason
+                        about, test, and maintain. Haines's rule: sometimes you
+                        can't avoid it entirely, but treat every global variable
+                        as a red flag that needs justification.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="insight-item">
+                    <span class="insight-num">06</span>
+                    <div>
+                      <h4>Learn to compile without an IDE</h4>
+                      <p>
+                        Understanding GCC, makefiles, header files, and static
+                        vs. dynamic linking at the command line gives you a
+                        mental model that no IDE can teach. Haines still reaches
+                        for Notepad++ and a terminal when experimenting —
+                        because it forces you to understand what's actually
+                        happening.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
